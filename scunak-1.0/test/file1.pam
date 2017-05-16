@@ -1,0 +1,9 @@
+[A:set]
+[B:set]
+[x:obj]
+(myclaim A B x):|- ((x::(A \cup B)) => (x::(B \cup A)))?
+
+(myprop A B):prop=(forall x:A . (not (x::B))).
+
+(myclaim2 A B x):|- (((myprop A B) & (x::B)) => (not (x::A)))?
+

@@ -1,0 +1,24 @@
+To test everything with Scunak using sockets, load "test-all.lisp" in allegro lisp
+(it will test allegro and clisp Scunak client).
+
+To test the Scunak top level proofreader (MKM 2006), 
+see proofread-test-script
+To test the Scunak socket proofreader (MKM 2006), 
+see proofread-test.lisp (load this with allegro; it tests both acl and clisp clients)
+
+To test the injective Cantor Theorem (IJCAR 2006)
+see injcantor-test-script and injcantor-test.lisp
+
+To test the woz1 basic set theory tutoring examples
+see woz1-test-script and woz1-test.lisp
+
+To test the woz2 relations tutoring examples
+see woz2-test-script and woz2-test.lisp
+
+To test the external agents for input, output and fill-gap,
+see external-test.lisp
+
+Other Test Suites:
+
+easy-test : test of a very quick intro to Scunak
+manual-test : tests the commutativity of union described in the manual

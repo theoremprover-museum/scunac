@@ -1,0 +1,125 @@
+% Testing woz2 examples
+
+% scunak-acl -k macu -p woz2-sm.lisp -f woz2-lemmas.pam woz2-claims.pam
+% scunak-clisp -k macu -p woz2-sm.lisp -f woz2-lemmas.pam woz2-claims.pam
+[M:set]
+[R:(breln1 M)]
+[S:(breln1 M)]
+[T:(breln1 M)]
+typeof (woz2Ex M R)
+tutor-auto-back setextsub orE.
+tutor-student-usable breln1invprop breln1inv breln1invI breln1invE breln1compprop breln1comp breln1compI breln1compE breln1unionprop breln1union breln1unionI breln1unionIL breln1unionIR breln1unionE breln1all subbreln1 contradiction.
+tutor (woz2Ex M R)
+let x y.
+let x y:M.
+assume (<<x,y>>::R).
+qed.
+clearly (<<x,y>>::(breln1inv M R)).
+clearly (<<y,x>>::(breln1inv M R)).
+qed.
+let x y:M.
+assume (<<x,y>>::R).
+assume (<<x,y>>::(breln1inv M (breln1inv M R))).
+willshow (<<y,x>>::(breln1inv M R)).
+qed.
+tutor (woz2Ex M R)
+let x y:M.
+assume (<<x,y>>::(breln1inv M (breln1inv M R))).
+hence (<<y,x>>::(breln1inv M R)).
+qed.
+let u v:M.
+assume (<<u,v>>::R).
+qed.
+hence (<<y,x>>::(breln1inv M R)).
+hence (<<v,u>>::(breln1inv M R)).
+qed.
+tutor (woz2Ex M R)
+let x y:M.
+assume (<<x,y>>::(breln1inv M (breln1inv M R))).
+willshow (<<y,x>>::(breln1inv M R)).
+clearly (<<y,x>>::(breln1inv M R)).
+let x y:M.
+assume (<<x,y>>::R).
+willshow (<<y,x>>::(breln1inv M R)).
+clearly (<<y,x>>::(breln1inv M R)).
+qed.
+prove woz2Ex
+M
+R
+pplan
+intro
+claimtype
+{x3:(in M)}{x4:(in M)}{x5:|- (<<x3,x4>>::R)}|- (<<x3,x4>>::(breln1inv M (breln1inv M R)))
+apply
+(subbreln1 M R (breln1inv M (breln1inv M R)) fact1)
+d
+x
+y
+clearly
+(<<y,x>>::(breln1inv M R))
+d
+claimtype
+{x3:(in M)}{x4:(in M)}{x5:|- (<<x3,x4>>::(breln1inv M (breln1inv M R)))}|- (<<x3,x4>>::R)
+pplan
+apply
+(subbreln1 M (breln1inv M (breln1inv M R)) R fact6)
+d
+x
+y
+pplan
+willshow
+(<<y,x>>::(breln1inv M R))
+d
+n
+n
+help woz2Ex
+tutor (woz2W M R S)
+let x y:M.
+assume (<<x,y>>::(breln1inv M (breln1comp M R S))).
+clearly (<<y,x>>::(breln1comp M R S)).
+exists z:M . ((<<y,z>>::R) & (<<z,x>>::S)).
+clearly (<<z,y>>::(breln1inv M R)).
+clearly (<<x,z>>::(breln1inv M S)).
+qed.
+let x y:M.
+assume (<<x,y>>::(breln1comp M (breln1inv M S) (breln1inv M R))).
+exists z:M . ((<<x,z>>::(breln1inv M S)) & (<<z,y>>::(breln1inv M R))).
+clearly (<<z,x>>::S).
+clearly (<<y,z>>::R).
+clearly (<<y,x>>::(breln1comp M R S)).
+qed.
+tutor-student-usable woz2W woz2Ex breln1invprop breln1inv breln1invI breln1invE breln1compprop breln1comp breln1compI breln1compE breln1unionprop breln1union breln1unionI breln1unionIL breln1unionIR breln1unionE breln1all subbreln1 contradiction dexE.
+tutor (woz2A M R S T)
+let x y:M.
+assume (<<x,y>>::(breln1comp M (breln1union M R S) T)).
+exists z:M . ((<<x,z>>::(breln1union M R S)) & (<<z,y>>::T)).
+clearly ((<<x,z>>::R) | (<<x,z>>::S)).
+assume (<<x,z>>::R).
+clearly (<<x,y>>::(breln1comp M R T)).
+qed.
+assume (<<x,z>>::S).
+clearly (<<x,y>>::(breln1comp M S T)).
+qed.
+let x y:M.
+assume (<<x,y>>::(breln1union M (breln1comp M R T) (breln1comp M S T))).
+clearly ((<<x,y>>::(breln1comp M R T)) | (<<x,y>>::(breln1comp M S T))).
+assume (<<x,y>>::(breln1comp M R T)).
+exists z:M . ((<<x,z>>::R) & (<<z,y>>::T)).
+clearly (<<x,z>>::(breln1union M R S)).
+qed.
+assume (<<x,y>>::(breln1comp M S T)).
+exists z:M . ((<<x,z>>::S) & (<<z,y>>::T)).
+clearly (<<x,z>>::(breln1union M R S)).
+qed.
+tutor-student-usable breln1unionCommutes woz2A woz2W woz2Ex breln1invprop breln1inv breln1invI breln1invE breln1compprop breln1comp breln1compI breln1compE breln1unionprop breln1union breln1unionI breln1unionIL breln1unionIR breln1unionE breln1all subbreln1 contradiction dexE.
+tutor (woz2B M R S T)
+clearly ((breln1comp M (breln1union M R S) T)==(breln1union M (breln1comp M R T) (breln1comp M S T))).
+clearly ((breln1comp M R T)==(breln1inv M (breln1inv M (breln1comp M R T)))).
+clearly ((breln1comp M S T)==(breln1inv M (breln1inv M (breln1comp M S T)))).
+clearly ((breln1comp M (breln1union M R S) T)==(breln1union M (breln1inv M (breln1inv M (breln1comp M R T))) (breln1inv M (breln1inv M (breln1comp M S T))))).
+clearly ((breln1inv M (breln1comp M R T))==(breln1comp M (breln1inv M T) (breln1inv M R))).
+clearly ((breln1inv M (breln1comp M S T))==(breln1comp M (breln1inv M T) (breln1inv M S))).
+clearly ((breln1comp M (breln1union M R S) T)==(breln1union M (breln1inv M (breln1comp M (breln1inv M T) (breln1inv M R))) (breln1inv M (breln1comp M (breln1inv M T) (breln1inv M S))))).
+clearly ((breln1union M (breln1inv M (breln1comp M (breln1inv M T) (breln1inv M R))) (breln1inv M (breln1comp M (breln1inv M T) (breln1inv M S))))==(breln1union M (breln1inv M (breln1comp M (breln1inv M T) (breln1inv M S))) (breln1inv M (breln1comp M (breln1inv M T) (breln1inv M R))))).
+qed.
+

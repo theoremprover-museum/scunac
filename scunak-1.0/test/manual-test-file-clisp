@@ -1,0 +1,563 @@
+{\bf A} sends & \verb+SCUNAK+ \\
+{\bf A} sends & \verb+1.0+ \\
+{\bf B} sends & \verb+Scunak Text Output Socket+ \\
+{\bf B} sends & \verb+Loading main patch file.+ \\
+{\bf A} sends & \verb+READY+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(TUTOR-AUTO-BACK "setextsub")+ \\
+{\bf A} sends & \verb+READY+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(TUTOR-STUDENT-USABLE "notE" "contradiction"
+                      "subsetI1" "subsetI2" "binintersectEL"
+                      "binintersectER" "binintersectI" "binunionIL"
+                      "binunionIR" "binunionE" "binunionCases"
+                      "emptysetsubset" "subsetemptysetimpeq")+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(LET "A" OBJ)+ \\
+{\bf A} sends & \verb+READY+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(LET "B" OBJ)+ \\
+{\bf A} sends & \verb+READY+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(TUTOR ("unionComm" "A" "B"))+ \\
+{\bf B} sends & \verb+Hello, + \\
+{\bf B} sends & \verb+Dave+ \\
+{\bf B} sends & \verb+.  Please try to prove the following:+ \\
+{\bf B} sends & \verb+|- ((A \cup B)==(B \cup A))+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(LET "x" OBJ)+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . A) . B)
+                         APP (APP |binunion| . B) . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . A)
+                         . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . A) . B)
+                         APP (APP |binunion| . B) . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . A)
+                         . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |eq| APP (APP |binunion| . A) . B) APP
+                         (APP |binunion| . B) . A)))+ \\
+{\bf B} sends & \verb+OK+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(ASSUME ("x" IN ("A" CUP "B")))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf B} sends & \verb+OK+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(ASSUME ("x" IN "A"))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf B} sends & \verb+OK+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(CLEARLY ("x" IN "B"))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS UNTRUE-CONCLUSION)+ \\
+{\bf B} sends & \verb+Not OK.+ \\
+{\bf B} sends & \verb+I'm afraid that doesn't follow, Dave.+ \\
+{\bf A} sends & \verb+(DIAGNOSIS UNTRUE-CONCLUSION)+ \\
+{\bf A} sends & \verb+(DIAGNOSIS UNTRUE-CONCLUSION)+ \\
+{\bf A} sends & \verb+(DIAGNOSIS UNTRUE-CONCLUSION)+ \\
+{\bf A} sends & \verb+(DIAGNOSIS UNTRUE-CONCLUSION)+ \\
+{\bf A} sends & \verb+(DIAGNOSIS UNTRUE-CONCLUSION)+ \\
+{\bf A} sends & \verb+NOT-OK+ \\
+{\bf A} sends & \verb+TUTOR-STATUS-UNCHANGED+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(CLEARLY ("x" IN ("B" CUP "A")))+ \\
+{\bf B} sends & \verb+OK+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(QED)+ \\
+{\bf B} sends & \verb+OK+ \\
+{\bf B} sends & \verb+Good + \\
+{\bf B} sends & \verb+Dave+ \\
+{\bf B} sends & \verb+, you're done with this part of the proof, but there is more to do.+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(ASSUME ("x" IN "A"))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf B} sends & \verb+Not OK.+ \\
+{\bf B} sends & \verb+I could not find any reason for you to make such an assumption, Dave.+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+NOT-OK+ \\
+{\bf A} sends & \verb+TUTOR-STATUS-UNCHANGED+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(ASSUME ("x" IN "B"))+ \\
+{\bf B} sends & \verb+OK+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(QED)+ \\
+{\bf B} sends & \verb+OK+ \\
+{\bf B} sends & \verb+Good Dave, you're done with this part of the proof, but there is more to do.+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(LET "x" OBJ)+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf B} sends & \verb+OK+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |subset| APP (APP |binunion| . B) . A)
+                         APP (APP |binunion| . A) . B)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS (BAD-TYPE-FOR |x|))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-LET
+                        (DCLASS APP |in| APP (APP |binunion| . B)
+                         . A)))+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(ASSUME ("x" IN ("A" CUP "B")))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf B} sends & \verb+Not OK.+ \\
+{\bf B} sends & \verb+I could not find any reason for you to make such an assumption, Dave.+ \\
+{\bf B} sends & \verb++ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP (APP |in| APP (APP |binunion| . B) . A)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+NOT-OK+ \\
+{\bf A} sends & \verb+TUTOR-STATUS-UNCHANGED+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(ASSUME ("x" IN ("B" CUP "A")))+ \\
+{\bf B} sends & \verb+OK+ \\
+{\bf A} sends & \verb+OK+ \\
+{\bf A} sends & \verb+READY-TUTOR+ \\
+\end{tabular}
+\begin{tabular}{ll}
+{\bf A} gets & \verb+(ASSUME ("x" IN "A"))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+                         . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME (APP (APP |in| . B) . |x|)))+ \\
+{\bf A} sends & \verb+(DIAGNOSIS
+                       (SHOULD-ASSUME
+                        (APP |not| APP
+                         (APP |in| APP (APP |binunion| . A) . B)
+           

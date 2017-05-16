@@ -1,0 +1,117 @@
+% scunak-acl -k macu -p set-computations-sm -f setrules.pam set-computations.pam
+% scunak-clisp -k macu -p set-computations-sm -f setrules set-computations.pam
+
+tutor-auto-back setextsub.
+
+tutor-student-usable setadjoinE notE contradiction subsetI1 subsetI2 binintersectEL binintersectER binintersectI binunionIL binunionIR binunionE binunionCases emptysetsubset subsetemptysetimpeq eqinunit uniqinunit.
+
+[a:obj]
+[b:obj]
+[c:obj]
+[d:obj]
+[e:obj]
+
+tutor (unionEx1 a b c d e)
+let x.
+assume (x::({a,b,c} \cup {c,d,e})).
+assume (x::{a,b,c}).
+assume (x==a).
+clearly (a::{a,b,c,d,e}).
+qed.
+assume (x::{b,c}).
+assume (x==b).
+clearly (b::{a,b,c,d,e}).
+qed.
+assume (x::{c}).
+clearly (x==c).
+clearly (c::{a,b,c,d,e}).
+qed.
+assume (x::{c,d,e}).
+assume (x==c).
+clearly (c::{a,b,c,d,e}).
+qed.
+assume (x::{d,e}).
+assume (x==d).
+clearly (d::{a,b,c,d,e}).
+qed.
+assume (x::{e}).
+clearly (x==e).
+clearly (e::{a,b,c,d,e}).
+clearly (x::{a,b,c,d,e}).
+clearly (({a,b,c} \cup {c,d,e})<={a,b,c,d,e}).
+let x:obj.
+assume (x::{a,b,c,d,e}).
+assume (x==a).
+clearly (a::{a,b,c}).
+clearly (x::{a,b,c}).
+qed.
+assume (x::{b,c,d,e}).
+assume (x==b).
+clearly (b::{a,b,c}).
+clearly (x::{a,b,c}).
+qed.
+assume (x::{c,d,e}).
+assume (x==c).
+clearly (c::{a,b,c}).
+clearly (x::{a,b,c}).
+qed.
+assume (x::{d,e}).
+assume (x==d).
+clearly (d::{c,d,e}).
+clearly (x::{c,d,e}).
+qed.
+assume (x::{e}).
+clearly (x==e).
+clearly (e::{c,d,e}).
+clearly (x::{c,d,e}).
+qed.
+
+[aNb:|- (a != b)]
+[aNc:|- (a != c)]
+[aNd:|- (a != d)]
+[aNe:|- (a != e)]
+[bNc:|- (b != c)]
+[bNd:|- (b != d)]
+[bNe:|- (b != e)]
+[cNd:|- (c != d)]
+[cNe:|- (c != e)]
+[dNe:|- (d != e)]
+
+tutor (intersectEx1 a b c d e aNb aNc aNd aNe bNc bNd bNe cNd cNe dNe)
+let x:obj.
+assume (x::{c}).
+clearly (x==c).
+clearly (c::{a,b,c}).
+clearly (x::{a,b,c}).
+clearly (c::{c,d,e}).
+clearly (x::{c,d,e}).
+clearly (x::({a,b,c} \cap {c,d,e})).
+clearly ({c}<=({a,b,c} \cap {c,d,e})).
+let x:obj.
+assume (x::({a,b,c} \cap {c,d,e})).
+clearly (x::{a,b,c}).
+clearly (x::{c,d,e}).
+assume (x==c).
+qed.
+assume (x::{d,e}).
+assume (x==d).
+assume (x==a).
+clearly (a==d).
+clearly (not (a==d)).
+qed.
+assume (x::{b,c}).
+assume (x==b).
+clearly (b==d).
+clearly (not (b==d)).
+qed.
+assume (x::{e}).
+clearly (x==e).
+assume (x==a).
+clearly (a==e).
+clearly (not (a==e)).
+qed.
+assume (x::{b,c}).
+assume (x==b).
+clearly (b==e).
+clearly (not (b==e)).
+qed.

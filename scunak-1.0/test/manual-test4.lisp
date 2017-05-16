@@ -1,0 +1,43 @@
+; Author: Chad E Brown
+; June 2006
+; Testing Scunak on examples in the manual
+
+(load "test-connect.lisp")
+
+(defun manual-test4 ()
+  (send-a '(LET "A" PROP))
+  (send-a '(LET "u" (PF "A")))
+  (send-a '(LET "A" PROP))
+  (send-a '(LET "B" (OBJ -> PROP)))
+  (send-a '(LET "u" (PI "x" OBJ ((PF "A") -> (PF ("B" "x"))))))
+  (send-a '(CONST ("false")
+		  PROP))
+  (send-a '(LET "phi" PROP))
+  (send-a '(LET "dpsi" ((PF "phi") -> PROP)))
+  (send-a '(CONST ("dimp" "phi" "dpsi")
+		  PROP))
+  (send-a '(LET "dpsipf" (PI "v" (PF "phi") (PF ("dpsi" "v")))))
+  (send-a '(CONST ("dimpI" "phi" "dpsi" "dpsipf")
+		  (PF ("dimp" "phi" "dpsi"))))
+  (send-a '(LET "phi" PROP))
+  (send-a '(LET "psi" PROP))
+  (send-a '(ABBREV ("imp" "phi" "psi")
+		   PROP
+		   ("dimp" "phi" (LAM ("x") "psi"))))
+  (send-a '(LET "phi" PROP))
+  (send-a '(ABBREV ("imp" "phi")
+		   (PROP -> PROP)
+		   (LAM ("psi") ("dimp" "phi" (LAM ("x") "psi")))))
+  (send-a '(LET "phi" PROP))
+  (send-a '(LET "psi" PROP))
+  (send-a '(CLAIM ("imp" "phi" "psi")
+		  PROP))
+  (send-a '(CLAIM2ABBREV ("imp")
+			 (LAM ("u" "v") ("dimp" "u" (LAM ("x") "v")))))
+  (scunak-disconnect)
+)
+(scunak-connect-acl "-k none")
+(manual-test4)
+(scunak-connect-clisp "-k none")
+(manual-test4)
+

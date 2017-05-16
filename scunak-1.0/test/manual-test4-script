@@ -1,0 +1,22 @@
+% scunak-acl -k none
+% scunak-clisp -k none
+[A:prop]
+[u:|- A]
+[A:prop]
+[B:obj->prop]
+[u:{x:obj}|- A -> |- (B x)]
+false:prop.
+[phi:prop]
+[dpsi:|- phi -> prop]
+(dimp phi dpsi):prop.
+[dpsipf:{v:|- phi}|- (dpsi v)]
+(dimpI phi dpsi dpsipf):|- (dimp phi dpsi).
+[phi:prop]
+[psi:prop]
+(imp phi psi):prop=(dimp phi (\x.psi)).
+[phi:prop]
+(imp phi):prop->prop=(\psi.dimp phi (\x.psi)).
+[phi:prop]
+[psi:prop]
+(imp phi psi):prop?
+imp:=(\u v.dimp u (\x.v)).

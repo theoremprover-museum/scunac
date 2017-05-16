@@ -1,0 +1,2 @@
+lisp -L make.lisp -e "(exit)"
+clisp make.lisp

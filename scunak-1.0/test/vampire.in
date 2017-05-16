@@ -1,0 +1,118 @@
+%--------------------------------------------------------------------------
+input_formula(powersetNonempty,axiom,(! [X37830] : nonempty(powerset(X37830)))).
+input_formula(inPowerset,axiom,(! [X37831] : in(powerset(X37831),X37831))).
+input_formula(emptyInPowerset,axiom,(! [X37832] : in(powerset(X37832),cemptyset))).
+input_formula(leftInvOfInj,axiom,(! [X37833] : (! [X37834] : (! [W37835] : (in(injFuncSet(X37833,X37834),W37835) => (! [W37837] : (in(X37833,W37837) => in(surjFuncSet(X37834,X37833),leftInvOfInj(X37833,X37834,W37835,W37837))))))))).
+input_formula(injFuncInInjFuncSet,axiom,(! [X37839] : (! [X37840] : (! [W37841] : (in(funcSet(X37839,X37840),W37841) => (injective(X37839,X37840,W37841) => in(injFuncSet(X37839,X37840),W37841))))))).
+input_formula(injFuncSetFuncInj,axiom,(! [X37843] : (! [X37844] : (! [W37845] : (in(injFuncSet(X37843,X37844),W37845) => injective(X37843,X37844,W37845)))))).
+input_formula(injFuncSetFuncIn,axiom,(! [X37847] : (! [X37848] : (! [W37849] : (in(injFuncSet(X37847,X37848),W37849) => in(funcSet(X37847,X37848),W37849)))))).
+input_formula(surjCantorThm,axiom,(! [X37851] : (! [W37852] : (in(funcSet(X37851,powerset(X37851)),W37852) => (~ surjective(X37851,powerset(X37851),W37852)))))).
+input_formula(surjFuncSetFuncSurj,axiom,(! [X37854] : (! [X37855] : (! [W37856] : (in(surjFuncSet(X37854,X37855),W37856) => surjective(X37854,X37855,W37856)))))).
+input_formula(surjFuncSetFuncIn,axiom,(! [X37858] : (! [X37859] : (! [W37860] : (in(surjFuncSet(X37858,X37859),W37860) => in(funcSet(X37858,X37859),W37860)))))).
+input_formula(funcGraphProp3,axiom,(! [X37862] : (! [X37863] : (! [W37864] : (in(funcSet(X37862,X37863),W37864) => (! [W37866] : (in(X37862,W37866) => in(W37864,kpair(W37866,ap2(X37862,X37863,W37864,W37866)))))))))).
+input_formula(funcGraphProp1,axiom,(! [X37868] : (! [X37869] : (! [W37870] : (func(X37868,X37869,W37870) => (! [W37872] : (in(X37868,W37872) => in(W37870,kpair(W37872,ap(X37868,X37869,W37870,W37872)))))))))).
+input_formula(ap2,axiom,(! [X37874] : (! [X37875] : (! [W37876] : (in(funcSet(X37874,X37875),W37876) => (! [W37878] : (in(X37874,W37878) => in(X37875,ap2(X37874,X37875,W37876,W37878))))))))).
+input_formula(infuncsetfunc,axiom,(! [X37880] : (! [X37881] : (! [W37882] : (in(funcSet(X37880,X37881),W37882) => func(X37880,X37881,W37882)))))).
+input_formula(funcinfuncset,axiom,(! [X37884] : (! [X37885] : (! [W37886] : (func(X37884,X37885,W37886) => in(funcSet(X37884,X37885),W37886)))))).
+input_formula(ap,axiom,(! [X37888] : (! [X37889] : (! [W37890] : (func(X37888,X37889,W37890) => (! [W37892] : (in(X37888,W37892) => in(X37889,ap(X37888,X37889,W37890,W37892))))))))).
+input_formula(breln1unionIR,axiom,(! [X37894] : (! [W37895] : (breln1(X37894,W37895) => (! [W37897] : (breln1(X37894,W37897) => (! [W37899] : (in(X37894,W37899) => (! [W37901] : (in(X37894,W37901) => (in(W37897,kpair(W37899,W37901)) => in(breln1union(X37894,W37895,W37897),kpair(W37899,W37901))))))))))))).
+input_formula(breln1unionIL,axiom,(! [X37903] : (! [W37904] : (breln1(X37903,W37904) => (! [W37906] : (breln1(X37903,W37906) => (! [W37908] : (in(X37903,W37908) => (! [W37910] : (in(X37903,W37910) => (in(W37904,kpair(W37908,W37910)) => in(breln1union(X37903,W37904,W37906),kpair(W37908,W37910))))))))))))).
+input_formula(breln1union,axiom,(! [X37912] : (! [W37913] : (breln1(X37912,W37913) => (! [W37915] : (breln1(X37912,W37915) => breln1(X37912,breln1union(X37912,W37913,W37915)))))))).
+input_formula(breln1unionprop,axiom,(! [X37917] : (! [W37918] : (breln1(X37917,W37918) => (! [W37920] : (breln1(X37917,W37920) => breln1(X37917,binunion(W37918,W37920)))))))).
+input_formula(breln1compI,axiom,(! [X37922] : (! [W37923] : (breln1(X37922,W37923) => (! [W37925] : (breln1(X37922,W37925) => (! [W37927] : (in(X37922,W37927) => (! [W37929] : (in(X37922,W37929) => (! [W37931] : (in(X37922,W37931) => (in(W37923,kpair(W37927,W37931)) => (in(W37925,kpair(W37931,W37929)) => in(breln1comp(X37922,W37923,W37925),kpair(W37927,W37929)))))))))))))))).
+input_formula(breln1comp,axiom,(! [X37933] : (! [W37934] : (breln1(X37933,W37934) => (! [W37936] : (breln1(X37933,W37936) => breln1(X37933,breln1comp(X37933,W37934,W37936)))))))).
+input_formula(breln1compprop,axiom,(! [X37938] : (! [W37939] : (breln1(X37938,W37939) => (! [W37941] : (breln1(X37938,W37941) => breln1(X37938,breln1compset(X37938,W37939,W37941)))))))).
+input_formula(breln1invE,axiom,(! [X37943] : (! [W37944] : (breln1(X37943,W37944) => (! [W37946] : (in(X37943,W37946) => (! [W37948] : (in(X37943,W37948) => (in(breln1inv(X37943,W37944),kpair(W37948,W37946)) => in(W37944,kpair(W37946,W37948))))))))))).
+input_formula(breln1invI,axiom,(! [X37950] : (! [W37951] : (breln1(X37950,W37951) => (! [W37953] : (in(X37950,W37953) => (! [W37955] : (in(X37950,W37955) => (in(W37951,kpair(W37953,W37955)) => in(breln1inv(X37950,W37951),kpair(W37955,W37953))))))))))).
+input_formula(breln1inv,axiom,(! [X37957] : (! [W37958] : (breln1(X37957,W37958) => breln1(X37957,breln1inv(X37957,W37958)))))).
+input_formula(breln1invprop,axiom,(! [X37960] : (! [W37961] : (breln1(X37960,W37961) => breln1(X37960,breln1invset(X37960,W37961)))))).
+input_formula(breln12breln,axiom,(! [X37963] : (! [W37964] : (breln1(X37963,W37964) => breln(X37963,X37963,breln12breln(X37963,W37964)))))).
+input_formula(breln1__U,axiom,(! [X37966] : (! [X37967] : (breln1(X37966,X37967) => breln(X37966,X37966,X37967))))).
+input_formula(breln1__F,axiom,(! [X37968] : (! [X37969] : (breln(X37968,X37968,X37969) => breln1(X37968,X37969))))).
+input_formula(breln__U,axiom,(! [X37970] : (! [X37971] : (! [X37972] : (breln(X37970,X37971,X37972) => subset(X37972,cartprod(X37970,X37971))))))).
+input_formula(breln__F,axiom,(! [X37973] : (! [X37974] : (! [X37975] : (subset(X37975,cartprod(X37973,X37974)) => breln(X37973,X37974,X37975)))))).
+input_formula(cartprodpair,axiom,(! [X37976] : (! [X37977] : (! [W37978] : (in(X37976,W37978) => (! [W37980] : (in(X37977,W37980) => in(cartprod(X37976,X37977),cartprodpair(X37976,X37977,W37978,W37980))))))))).
+input_formula(cartprodpairin,axiom,(! [X37982] : (! [X37983] : (! [W37984] : (in(X37982,W37984) => (! [W37986] : (in(X37983,W37986) => in(cartprod(X37982,X37983),kpair(W37984,W37986))))))))).
+input_formula(cartprodsnd,axiom,(! [X37988] : (! [X37989] : (! [W37990] : (in(cartprod(X37988,X37989),W37990) => in(X37989,cartprodsnd(X37988,X37989,W37990))))))).
+input_formula(cartprodsndin,axiom,(! [X37992] : (! [X37993] : (! [W37994] : (in(cartprod(X37992,X37993),W37994) => in(X37993,ksnd(cartprodmempairc(X37992,X37993,W37994)))))))).
+input_formula(cartprodfst,axiom,(! [X37996] : (! [X37997] : (! [W37998] : (in(cartprod(X37996,X37997),W37998) => in(X37996,cartprodfst(X37996,X37997,W37998))))))).
+input_formula(cartprodfstin,axiom,(! [X38000] : (! [X38001] : (! [W38002] : (in(cartprod(X38000,X38001),W38002) => in(X38000,kfst(cartprodmempairc(X38000,X38001,W38002)))))))).
+input_formula(cartprodpairmemER,axiom,(! [X38004] : (! [X38005] : (! [X38006] : (! [X38007] : (in(cartprod(X38004,X38005),kpair(X38006,X38007)) => in(X38005,X38007))))))).
+input_formula(cartprodpairmemEL,axiom,(! [X38008] : (! [X38009] : (! [X38010] : (! [X38011] : (in(cartprod(X38008,X38009),kpair(X38010,X38011)) => in(X38008,X38010))))))).
+input_formula(cartprodmempairc,axiom,(! [X38012] : (! [X38013] : (! [W38014] : (in(cartprod(X38012,X38013),W38014) => iskpair(cartprodmempairc(X38012,X38013,W38014))))))).
+input_formula(cartprodmempair,axiom,(! [X38016] : (! [X38017] : (! [W38018] : (in(cartprod(X38016,X38017),W38018) => iskpair(W38018)))))).
+input_formula(ubforcartprodlem3,axiom,(! [X38020] : (! [X38021] : (! [W38022] : (in(X38020,W38022) => (! [W38024] : (in(X38021,W38024) => in(powerset(powerset(binunion(X38020,X38021))),kpair(W38022,W38024))))))))).
+input_formula(ubforcartprodlem2,axiom,(! [X38026] : (! [X38027] : (! [W38028] : (in(X38026,W38028) => (! [W38030] : (in(X38027,W38030) => in(powerset(powerset(binunion(X38026,X38027))),setadjoin(setadjoin(W38028,cemptyset),setadjoin(setadjoin(W38028,setadjoin(W38030,cemptyset)),cemptyset)))))))))).
+input_formula(ubforcartprodlem1,axiom,(! [X38032] : (! [X38033] : (! [W38034] : (in(X38032,W38034) => (! [W38036] : (in(X38033,W38036) => subset(setadjoin(setadjoin(W38034,cemptyset),setadjoin(setadjoin(W38034,setadjoin(W38036,cemptyset)),cemptyset)),powerset(binunion(X38032,X38033)))))))))).
+input_formula(upairinpowunion,axiom,(! [X38038] : (! [X38039] : (! [W38040] : (in(X38038,W38040) => (! [W38042] : (in(X38039,W38042) => in(powerset(binunion(X38038,X38039)),setadjoin(W38040,setadjoin(W38042,cemptyset)))))))))).
+input_formula(upairsubunion,axiom,(! [X38044] : (! [X38045] : (! [W38046] : (in(X38044,W38046) => (! [W38048] : (in(X38045,W38048) => subset(setadjoin(W38046,setadjoin(W38048,cemptyset)),binunion(X38044,X38045))))))))).
+input_formula(singletoninpowunion,axiom,(! [X38050] : (! [X38051] : (! [W38052] : (in(X38050,W38052) => in(powerset(binunion(X38050,X38051)),setadjoin(W38052,cemptyset))))))).
+input_formula(singletoninpowerset,axiom,(! [X38054] : (! [W38055] : (in(X38054,W38055) => in(powerset(X38054),setadjoin(W38055,cemptyset)))))).
+input_formula(singletonsubset,axiom,(! [X38057] : (! [W38058] : (in(X38057,W38058) => subset(setadjoin(W38058,cemptyset),X38057))))).
+input_formula(powersetsubset,axiom,(! [X38060] : (! [X38061] : (subset(X38060,X38061) => subset(powerset(X38060),powerset(X38061)))))).
+input_formula(kpair,axiom,(! [X38062] : (! [X38063] : iskpair(kpair(X38062,X38063))))).
+input_formula(kpairiskpair,axiom,(! [X38064] : (! [X38065] : iskpair(setadjoin(setadjoin(X38064,cemptyset),setadjoin(setadjoin(X38064,setadjoin(X38065,cemptyset)),cemptyset)))))).
+input_formula(setukpairIR,axiom,(! [X38066] : (! [X38067] : in(setunion(setadjoin(setadjoin(X38066,cemptyset),setadjoin(setadjoin(X38066,setadjoin(X38067,cemptyset)),cemptyset))),X38067)))).
+input_formula(setukpairIL,axiom,(! [X38068] : (! [X38069] : in(setunion(setadjoin(setadjoin(X38068,cemptyset),setadjoin(setadjoin(X38068,setadjoin(X38069,cemptyset)),cemptyset))),X38068)))).
+input_formula(the,axiom,(! [W38070] : (singleton(W38070) => in(W38070,the(W38070))))).
+input_formula(theprop,axiom,(! [W38072] : (singleton(W38072) => in(W38072,setunion(W38072))))).
+input_formula(setunionsingleton2,axiom,(! [X38074] : subset(X38074,setunion(setadjoin(X38074,cemptyset))))).
+input_formula(setunionsingleton1,axiom,(! [X38075] : subset(setunion(setadjoin(X38075,cemptyset)),X38075))).
+input_formula(singletonsswitch,axiom,(! [X38076] : (! [X38077] : (in(setadjoin(X38077,cemptyset),X38076) => in(setadjoin(X38076,cemptyset),X38077))))).
+input_formula(symdiffIneg2,axiom,(! [X38078] : (! [X38079] : (! [X38080] : ((~ in(X38078,X38080)) => ((~ in(X38079,X38080)) => (~ in(symdiff(X38078,X38079),X38080)))))))).
+input_formula(symdiffIneg1,axiom,(! [X38081] : (! [X38082] : (! [X38083] : (in(X38081,X38083) => (in(X38082,X38083) => (~ in(symdiff(X38081,X38082),X38083)))))))).
+input_formula(symdiffI2,axiom,(! [X38084] : (! [X38085] : (! [X38086] : ((~ in(X38084,X38086)) => (in(X38085,X38086) => in(symdiff(X38084,X38085),X38086))))))).
+input_formula(symdiffI1,axiom,(! [X38087] : (! [X38088] : (! [X38089] : (in(X38087,X38089) => ((~ in(X38088,X38089)) => in(symdiff(X38087,X38088),X38089))))))).
+input_formula(setminusELneg,axiom,(! [X38090] : (! [X38091] : (! [X38092] : ((~ in(setminus(X38090,X38091),X38092)) => ((~ in(X38091,X38092)) => (~ in(X38090,X38092)))))))).
+input_formula(setminusERneg,axiom,(! [X38093] : (! [X38094] : (! [X38095] : ((~ in(setminus(X38093,X38094),X38095)) => (in(X38093,X38095) => in(X38094,X38095))))))).
+input_formula(setminusIRneg,axiom,(! [X38096] : (! [X38097] : (! [X38098] : (in(X38097,X38098) => (~ in(setminus(X38096,X38097),X38098))))))).
+input_formula(setminusILneg,axiom,(! [X38099] : (! [X38100] : (! [X38101] : ((~ in(X38099,X38101)) => (~ in(setminus(X38099,X38100),X38101))))))).
+input_formula(setminusLsub,axiom,(! [X38102] : (! [X38103] : subset(setminus(X38102,X38103),X38102)))).
+input_formula(setminusER,axiom,(! [X38104] : (! [X38105] : (! [X38106] : (in(setminus(X38104,X38105),X38106) => (~ in(X38105,X38106))))))).
+input_formula(setminusEL,axiom,(! [X38107] : (! [X38108] : (! [X38109] : (in(setminus(X38107,X38108),X38109) => in(X38107,X38109)))))).
+input_formula(setminusI,axiom,(! [X38110] : (! [X38111] : (! [X38112] : (in(X38110,X38112) => ((~ in(X38111,X38112)) => in(setminus(X38110,X38111),X38112))))))).
+input_formula(binintersectRsub,axiom,(! [X38113] : (! [X38114] : subset(binintersect(X38113,X38114),X38114)))).
+input_formula(binintersectLsub,axiom,(! [X38115] : (! [X38116] : subset(binintersect(X38115,X38116),X38115)))).
+input_formula(binintersectER,axiom,(! [X38117] : (! [X38118] : (! [X38119] : (in(binintersect(X38117,X38118),X38119) => in(X38118,X38119)))))).
+input_formula(binintersectEL,axiom,(! [X38120] : (! [X38121] : (! [X38122] : (in(binintersect(X38120,X38121),X38122) => in(X38120,X38122)))))).
+input_formula(binintersectI,axiom,(! [X38123] : (! [X38124] : (! [X38125] : (in(X38123,X38125) => (in(X38124,X38125) => in(binintersect(X38123,X38124),X38125))))))).
+input_formula(binunionRsub,axiom,(! [X38126] : (! [X38127] : subset(X38127,binunion(X38126,X38127))))).
+input_formula(binunionIR,axiom,(! [X38128] : (! [X38129] : (! [X38130] : (in(X38129,X38130) => in(binunion(X38128,X38129),X38130)))))).
+input_formula(binunionLsub,axiom,(! [X38131] : (! [X38132] : subset(X38131,binunion(X38131,X38132))))).
+input_formula(binunionIL,axiom,(! [X38133] : (! [X38134] : (! [X38135] : (in(X38133,X38135) => in(binunion(X38133,X38134),X38135)))))).
+input_formula(upairsetIR,axiom,(! [X38136] : (! [X38137] : in(setadjoin(X38136,setadjoin(X38137,cemptyset)),X38137)))).
+input_formula(upairsetIL,axiom,(! [X38138] : (! [X38139] : in(setadjoin(X38138,setadjoin(X38139,cemptyset)),X38138)))).
+input_formula(witnessnonempty,axiom,(! [X38140] : (! [X38141] : (in(X38140,X38141) => nonempty(X38140))))).
+input_formula(emptysetsubset,axiom,(! [X38142] : subset(cemptyset,X38142))).
+input_formula(notinemptyset,axiom,(! [X38143] : (~ in(cemptyset,X38143)))).
+input_formula(emptysetimpfalse,axiom,(! [X38144] : (in(cemptyset,X38144) => false))).
+input_formula(powersetE1,axiom,(! [X38145] : (! [X38146] : (in(powerset(X38145),X38146) => subset(X38146,X38145))))).
+input_formula(powersetI1,axiom,(! [X38147] : (! [X38148] : (subset(X38148,X38147) => in(powerset(X38147),X38148))))).
+input_formula(setadjoinSub,axiom,(! [X38149] : (! [X38150] : subset(X38150,setadjoin(X38149,X38150))))).
+input_formula(notsubsetI,axiom,(! [X38151] : (! [X38152] : (! [X38153] : (in(X38151,X38153) => ((~ in(X38152,X38153)) => (~ subset(X38151,X38152)))))))).
+input_formula(subsetTrans,axiom,(! [X38154] : (! [X38155] : (! [X38156] : (subset(X38154,X38155) => (subset(X38155,X38156) => subset(X38154,X38156))))))).
+input_formula(subsetE2,axiom,(! [X38157] : (! [X38158] : (! [X38159] : (subset(X38157,X38158) => ((~ in(X38158,X38159)) => (~ in(X38157,X38159)))))))).
+input_formula(subsetE,axiom,(! [X38160] : (! [X38161] : (! [X38162] : (subset(X38160,X38161) => (in(X38160,X38162) => in(X38161,X38162))))))).
+input_formula(subsetRefl,axiom,(! [X38163] : subset(X38163,X38163))).
+input_formula(set2prop__U,axiom,(! [X38164] : (set2prop(X38164) => in(X38164,cemptyset)))).
+input_formula(set2prop__F,axiom,(! [X38165] : (in(X38165,cemptyset) => set2prop(X38165)))).
+input_formula(secondinupair,axiom,(! [X38166] : (! [X38167] : in(setadjoin(X38166,setadjoin(X38167,cemptyset)),X38167)))).
+input_formula(notfalse,axiom,(~ false)).
+input_formula(false__U,axiom,(false => in(cemptyset,cemptyset))).
+input_formula(false__F,axiom,(in(cemptyset,cemptyset) => false)).
+input_formula(emptynotinempty,axiom,(~ in(cemptyset,cemptyset))).
+input_formula(trueI,axiom,true).
+input_formula(true__U,axiom,(true => in(setadjoin(cemptyset,cemptyset),cemptyset))).
+input_formula(true__F,axiom,(in(setadjoin(cemptyset,cemptyset),cemptyset) => true)).
+input_formula(emptyinunitempty,axiom,in(setadjoin(cemptyset,cemptyset),cemptyset)).
+input_formula(univSU,axiom,(! [X38168] : (! [W38169] : (in(univ(X38168),W38169) => in(univ(X38168),setunion(W38169)))))).
+input_formula(univPow,axiom,(! [X38171] : (! [W38172] : (in(univ(X38171),W38172) => in(univ(X38171),powerset(W38172)))))).
+input_formula(univAdj,axiom,(! [X38174] : (! [W38175] : (in(univ(X38174),W38175) => (! [W38177] : (in(univ(X38174),W38177) => in(univ(X38174),setadjoin(W38175,W38177)))))))).
+input_formula(univHas,axiom,(! [X38179] : in(univ(X38179),X38179))).
+input_formula(setunionI,axiom,(! [X38180] : (! [X38181] : (! [X38182] : (in(X38182,X38181) => (in(X38180,X38182) => in(setunion(X38180),X38181))))))).
+input_formula(powersetE,axiom,(! [X38183] : (! [X38184] : (! [X38185] : (in(powerset(X38183),X38184) => (in(X38184,X38185) => in(X38183,X38185))))))).
+input_formula(setadjoinIR,axiom,(! [X38186] : (! [X38187] : (! [X38188] : (in(X38187,X38188) => in(setadjoin(X38186,X38187),X38188)))))).
+input_formula(setadjoinIL,axiom,(! [X38189] : (! [X38190] : in(setadjoin(X38189,X38190),X38189)))).
+input_formula(u37829,axiom,in(funcSet(powerset(cu37828),cu37828),cu37829)).
+input_formula(mainconj,conjecture,(~ injective(powerset(cu37828),cu37828,cu37829))).
+%--------------------------------------------------------------------------

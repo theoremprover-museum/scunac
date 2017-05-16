@@ -1,0 +1,14 @@
+% Chad E Brown
+% December 2005, June 2006
+[M:obj]
+[R:(breln1 M)][S:(breln1 M)][T:(breln1 M)]
+
+(woz2Ex M R):|- (R==(breln1inv M (breln1inv M R)))?
+
+(woz2W M R S):|- ((breln1inv M (breln1comp M R S))==(breln1comp M (breln1inv M S) (breln1inv M R)))?
+
+(woz2A M R S T):|- ((breln1comp M (breln1union M R S) T)==(breln1union M (breln1comp M R T) (breln1comp M S T)))?
+
+(woz2B M R S T):|- ((breln1comp M (breln1union M R S) T)==(breln1union M (breln1inv M (breln1comp M (breln1inv M T) (breln1inv M S))) (breln1inv M (breln1comp M (breln1inv M T) (breln1inv M R)))))?
+
+

@@ -1,0 +1,19 @@
+author "Chad Edward Brown"!
+
+% "Relatively" Small Categories
+
+[U:set] % any set, acts as a universe of small sets, sometimes assume it acts like a universe
+
+[X:(powerset U)]
+(cat U):set?
+% ={X:(powerset U)|(dand (iskpair X) (\u.dand (iskpair (ksnd <X,u>)) (\v.dand (iskpair (ksnd <(ksnd <X,u>),v>))
+% (\w.dand ((kfst <(ksnd <X,u>),v>)::(funcSet ((kfst <X,u>) \times (kfst <X,u>)) U))
+% (\hpf.true))))). % need to finish -- clearly need record types...!
+
+(catObj U):(cat U) -> set?
+(catHom U):{C:(cat U)}(catObj U C) -> (catObj U C) -> set?
+(catId U):{C:(cat U)}{X:(catObj U C)}(catHom U C X X)?
+(catComp U):{C:(cat U)}{X:(catObj U C)}{Y:(catObj U C)}{Z:(catObj U C)}(catHom U C Y Z) -> (catHom U C X Y) -> (catHom U C X Z)?
+(catIdL U):{C:(cat U)}{X:(catObj U C)}{Y:(catObj U C)}{f:(catHom U C X Y)}|- ((catComp U C X Y Y (catId U C Y) f)==f)?
+(catIdR U):{C:(cat U)}{X:(catObj U C)}{Y:(catObj U C)}{f:(catHom U C X Y)}|- ((catComp U C X X Y f (catId U C X))==f)?
+(catAssoc U):{C:(cat U)}{X:(catObj U C)}{Y:(catObj U C)}{Z:(catObj U C)}{W:(catObj U C)}{f:(catHom U C X Y)}{g:(catHom U C Y Z)}{h:(catHom U C Z W)}|- ((catComp U C X Z W h (catComp U C X Y Z g f))==(catComp U C X Y W (catComp U C Y Z W h g) f))?

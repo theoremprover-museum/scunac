@@ -1,0 +1,138 @@
+author "Chad Edward Brown"!
+
+% Conway Games, as an attempt to construct the reals
+% Source: Wikipedia
+
+[U:set]
+
+% Could use Knaster-Tarski LFP for this defn...
+(games U):set
+ ={<<XL,XR>>:U \times U|forall p:(powerset (U \times U)) . ((forall X:((powerset p) \cap U) . (forall Y:((powerset p) \cap U) . (<<X,Y>>::p))) => (<<XL,XR>>::p))}.
+
+[g:(games U)]
+(gamesPair U g):|- (iskpair g)?
+
+(gameset U):set=((powerset (games U)) \cap U).
+
+[X:(gameset U)]
+[Y:(gameset U)]
+
+(gamesetInU2 U X):|- (X::U)?
+(gamesetInPG U X):|- (X::(powerset (games U)))?
+
+[p:(powerset (U \times U))]
+[pclos:|- (forall X:((powerset p) \cap U) . (forall Y:((powerset p) \cap U) . (<<X,Y>>::p)))]
+(gamesLeastSet U p pclos):|- ((games U)<=p)?
+
+(gamesConspLem U X p pclos):|- (X::((powerset p) \cap U))?
+(gamesConsp U X Y):|- (<<X,Y>>::(games U))?
+
+[X1:(in ((powerset ((gameset U) \times (gameset U))) \cap U))]
+(gameInGSCPLem U X1):|- (X1::(gameset U))?
+(gameInGSCP U g):|- (g::((gameset U) \times (gameset U)))?
+(gamefstInGS U g):|- ((kfst <g,gamesPair U g>)::(gameset U))?
+(gamesndInGS U g):|- ((ksnd <g,gamesPair U g>)::(gameset U))?
+
+(gamesL U g):(gameset U)
+ =<(kfst <g,gamesPair U g>),gamefstInGS U g>.
+(gamesR U g):(gameset U)
+ =<(ksnd <g,gamesPair U g>),gamesndInGS U g>.
+
+notation L gamesL U.
+notation R gamesR U.
+
+(gamesSP U g):|- (g==<<(L g),(R g)>>)?
+
+% Coercions
+(Lsubgames U g):|- ((L g)<=(games U))?
+(Rsubgames U g):|- ((R g)<=(games U))?
+
+coercion (Lsubgames U g).
+coercion (Rsubgames U g).
+
+% Induction Principle 1
+[phi:(games U) -> prop]
+[ind:{g:(games U)}|- (forall x:(L g) . (phi x)) -> |- (forall y:(R g) . (phi y)) -> |- (phi g)]
+
+[Xz:(in ((powerset {x0:games U|phi x0}) \cap U))]
+(gamesInd1Lem1 U phi Xz):|- (Xz::(gameset U))?
+
+(gamesInd1Lem2 U phi):|- ({x0:games U|phi x0}::(powerset (U \times U)))?
+
+(gamesInd1 U phi ind g):|- (phi g)?
+
+% [A:set]
+% [R:(powerset (A \times A))]
+% 
+% (relnLiftL A R):(powerset ((powerset A) \times A))
+% 
+% (relnLiftRProp A R):(powerset (A \times (powerset A)))
+% (relnLiftR A R):(powerset (A \times (powerset A)))
+%  =<{<<x,Y>>:(A \times (powerset A))|forall y:Y . (<<x,y>>::R)},(relnLiftRProp
+% 
+% (relnLiftLR A R):(powerset ((powerset A) \times (powerset A)))
+ 
+[h:(games U)]
+coercion (Lsubgames U h).
+coercion (Rsubgames U h).
+[x:(L g)]
+coercion (Lsubgames U x).
+coercion (Rsubgames U x).
+[y:(R h)]
+coercion (Lsubgames U y).
+coercion (Rsubgames U y).
+
+% fix
+(gamesLeqIFn U):(funcSet (powerset ((games U) \times (games U))) (powerset ((games U) \times (games U))))
+ =(lam2 (powerset ((games U) \times (games U))) (powerset ((games U) \times (games U)))
+    (\p.{<<g,h>>:(games U) \times
+ (games U)|((forall x:(L g) . ((exists w:(L h) . (<<x,w>>::p)) | (exists z:(R x) . (<<z,h>>::p))))
+     & (forall y:(R h) . ((exists w:(L y) . (<<g,w>>::p)) | (exists z:(R g) . (<<z,y>>::p)))))})).
+(gamesLeqIFnMon U):|- (monotoneSetFn ((games U) \times (games U)) (gamesLeqIFn U))?
+(gamesLeqReln U):(powerset ((games U) \times (games U)))
+ =(ktlfp ((games U) \times (games U)) (gamesLeqIFn U) (gamesLeqIFnMon U)).
+
+% (gamesLeqReln U):set={<<g,h>>:(games U) \times (games U)|forall p:(powerset ((games U) \times (games U))) .
+%  ((forall g:(games U) . forall h:(games U) .
+%     (((forall x:(L g) . ((exists w:(L h) . (<<x,w>>::p)) | (exists z:(R x) . (<<z,h>>::p))))
+%     & (forall y:(R h) . ((exists w:(L y) . (<<g,w>>::p)) | (exists z:(R g) . (<<z,y>>::p)))))
+%    => (<<g,h>>::p)))
+%  => (<<g,h>>::p))}.
+
+(gamesLeq U g h):prop=(<<g,h>>::(gamesLeqReln U)).
+
+notation \leq (gamesLeq U).
+
+% (gamesLeqEquiv U g h):|- FP expanded
+
+% L Pre FP expanded
+
+% IDEA:
+% Instead of 'mutual induction' on g and h,
+% Can prove something like
+% forall g (ind var)
+% ((forall h . ((g \leq h) => (forall x:(L g) (not (h \leq x)))))
+%  &
+%  (forall h . ((h \leq g) => (forall y:(R g) (not (y \leq h))))))
+
+(gamesLeqI U g h):|- (forall x:(L g) . (not (h \leq x)))
+ -> |- (forall y:(R h) . (not (y \leq g)))
+ -> |- (g \leq h)?
+
+(gamesLeqC1 U g h x):|- (g \leq h) -> |- (h \leq x) -> |- false?
+(gamesLeqE1 U g h x):|- (g \leq h) -> |- (not (h \leq x))?
+(gamesLeqNI1 U g h):|- (exists x:(L g) . (h \leq x)) -> |- (not (g \leq h))?
+(gamesLeqC2 U g h y):|- (g \leq h) -> |- (y \leq g) -> |- false?
+(gamesLeqE2 U g h y):|- (g \leq h) -> |- (not (y \leq g))?
+(gamesLeqNI2 U g h):|- (exists y:(R h) . (y \leq g)) -> |- (not (g \leq h))?
+
+(gamesLeqCases U g h):|- (((exists x:(L g) . (h \leq x)) | (exists y:(R h) . (y \leq g))) | (g \leq h))?
+
+(gamesLess U g h):prop=((g \leq h) & (not (h \leq g))).
+(gamesEquiv U g h):prop=((g \leq h) & (h \leq g)).
+
+notation < (gamesLess U).
+notation -- (gamesEquiv U).
+
+% Now load the proofs
+loadl "games-pfs"!

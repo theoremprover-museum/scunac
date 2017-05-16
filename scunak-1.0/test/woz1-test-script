@@ -1,0 +1,80 @@
+; Author: Chad E Brown
+; June 2006
+; Testing Scunak on the woz1 basic set theory examples + similar basic set theory problems.
+
+% scunak-acl -k macu -p woz1-sm.lisp -f woz1-lemmas.pam woz1-claims.pam
+% scunak-clisp -k macu -p woz1-sm.lisp -f woz1-lemmas.pam woz1-claims.pam
+
+[U:set]
+[A:(powerset U)]
+[B:(powerset U)]
+[C:(powerset U)]
+[D:(powerset U)]
+tutor-auto-back setextsub orE powersetTI.
+tutor-student-usable notE xmcases eqI notI contradiction symeq transeq symtrans1eq symtrans2eq binunionT binintersectT powersetT setminusT complementT setextT subsetTI powersetTI powersetTE powersetTI1 powersetTE1 complementTI complementTE complementTI1 complementTE1 binintersectTEL binintersectTER binintersectTI binunionTE1 binunionTE binunionTIL binunionTIR binintersectTELcontra binintersectTERcontra binunionTILcontra binunionTIRcontra binunionTEcontra demorgan1a demorgan2a demorgan2a1 demorgan2a2 demorgan1b demorgan2b2 demorgan2b demorgan1 demorgan2 demorgan1Eq2 demorgan2Eq2 demorgan3Eq2 demorgan4Eq2 contrasubsetT contrasubsetT1 binintersectTSub1 binintersectTSub2 binunionTSub1 binunionTSub2 impI impE woz13rule1 woz13rule2 woz13rule3 doubleComplementSub1 doubleComplementSub2 doubleComplementEq subsetTrans.
+tutor-only-usable woz13rule4.
+tutor (woz1_1 U A B)
+let x:U.
+assume (x::(complementT U A)).
+clearly (not (x::A)).
+clearly (not (x::(binintersectT U A B))).
+qed.
+tutor (woz1_1 U A B)
+let x:U.
+assume (x::(complementT U A)).
+clearly (not (x::A)).
+clearly (not (x::(binintersectT U A B))).
+clearly ((complementT U A) <= (complementT U (binintersectT U A B))).
+clearly (x::(complementT U (binintersectT U A B))).
+clearly ((complementT U A) <= (complementT U (binintersectT U A B))).
+qed.
+tutor (woz1_2 U A B C D)
+clearly ((complementT U (binintersectT U (binunionT U A B) (binunionT U C D)))==(binunionT U (complementT U (binunionT U A B)) (complementT U (binunionT U C D)))).
+clearly ((complementT U (binunionT U A B))==(binintersectT U (complementT U A) (complementT U B))).
+clearly ((complementT U (binunionT U C D))==(binintersectT U (complementT U C) (complementT U D))).
+qed.
+tutor (woz1_3 U A B C)
+clearly (A <= (binunionT U A C)).
+clearly (B <= (binunionT U B C)).
+qed.
+clearly ((binintersectT U A B) <= (binintersectT U (binunionT U A C) (binunionT U B C))).
+clearly ((binintersectT U A B) <= (binunionT U A C)).
+clearly ((binintersectT U A B) <= (binunionT U B C)).
+clearly ((binintersectT U A B) <= (binintersectT U (binunionT U A C) (binunionT U B C))).
+qed.
+tutor (woz1_4 U A B)
+assume (A<=(complementT U B)).
+qed.
+let x:U.
+assume (x::B).
+clearly (not (x::A)).
+qed.
+tutor (woz1_4 U A B)
+assume (A<=(complementT U B)).
+let x:U.
+assume (x::B).
+clearly (not (x::A)).
+clearly (x::(complementT U A)).
+qed.
+tutor (woz1_5 U A B)
+let x:U.
+assume (x::(complementT U (binunionT U A B))).
+clearly (not (x::(binunionT U A B))).
+clearly (not (x::A)).
+clearly (x::(complementT U A)).
+qed.
+tutor (woz1_5 U A B)
+let x:U.
+assume (x::(complementT U (binunionT U A B))).
+clearly (not (x::(binunionT U A B))).
+clearly (not (x::A)).
+clearly (x::(complementT U A)).
+clearly ((complementT U (binunionT U A B)) <= (complementT U A)).
+qed.
+tutor-student-usable woz1_4 notE xmcases eqI notI contradiction symeq transeq symtrans1eq symtrans2eq binunionT binintersectT powersetT setminusT complementT setextT subsetTI powersetTI powersetTE powersetTI1 powersetTE1 complementTI complementTE complementTI1 complementTE1 binintersectTEL binintersectTER binintersectTI binunionTE1 binunionTE binunionTIL binunionTIR binintersectTELcontra binintersectTERcontra binunionTILcontra binunionTIRcontra binunionTEcontra demorgan1a demorgan2a demorgan2a1 demorgan2a2 demorgan1b demorgan2b2 demorgan2b demorgan1 demorgan2 demorgan1Eq2 demorgan2Eq2 demorgan3Eq2 demorgan4Eq2 contrasubsetT contrasubsetT1 binintersectTSub1 binintersectTSub2 binunionTSub1 binunionTSub2 impI impE woz13rule1 woz13rule2 woz13rule3 doubleComplementSub1 doubleComplementSub2 doubleComplementEq subsetTrans.
+tutor (woz1_5 U A B)
+clearly (A <= (binunionT U A B)).
+clearly ((binunionT U A B) <= (complementT U (complementT U (binunionT U A B)))).
+clearly (A <= (complementT U (complementT U (binunionT U A B)))).
+clearly ((complementT U (binunionT U A B)) <= (complementT U A)).
+qed.

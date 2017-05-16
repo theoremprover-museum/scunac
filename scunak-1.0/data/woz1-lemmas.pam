@@ -1,0 +1,21 @@
+author "Chad Edward Brown"!
+
+[U:set]
+[A:(powerset U)]
+[B:(powerset U)]
+[C:(powerset U)]
+[D:(powerset U)]
+[x:obj]
+
+(woz13rule0 U A B x):|- (x::(binintersectT U A B)) -> |- (x::U)?
+(woz13rule1 U A B C):|- (A <= C) -> ((binintersectT U A B) <= C)?
+(woz13rule2 U A B C):|- (B <= C) -> ((binintersectT U A B) <= C)?
+(woz13rule3 U A B C):|- (A <= B) -> |- (A <= C) -> |- (A <= (binintersectT U B C))?
+(woz13rule4 U A B C D):|- (A <= C) -> |- (B <= D) -> |- ((binintersectT U A B) <= (binintersectT U C D))?
+
+woz13rule0:=(\x0 x1 x2 x3 x4.powersetE x0 x1 x3 x1 (binintersectEL x1 x2 x3 (binintersectT#U x0 x1 x2 (\x5.(x3::x5)) x4))).
+woz13rule1:=(\x0 x1 x2 x3 x4.subsetI1 (binintersectT x0 x1 x2) x3 (\x5.subsetE x1 x3 x5 x4 (binintersectTEL x0 x1 x2 <x5,woz13rule0 x0 x1 x2 x5 x5> x5))).
+woz13rule2:=(\x0 x1 x2 x3 x4.subsetI1 (binintersectT x0 x1 x2) x3 (\x5.subsetE x2 x3 x5 x4 (binintersectTER x0 x1 x2 <x5,woz13rule0 x0 x1 x2 x5 x5> x5))).
+woz13rule3:=(\x0 x1 x2 x3 x4 x5.subsetI1 x1 (binintersectT x0 x2 x3) (\x6.binintersectT#F x0 x2 x3 (\x7.(x6::x7)) (binintersectI x2 x3 x6 (subsetE x1 x2 x6 x4 x6) (subsetE x1 x3 x6 x5 x6)))).
+woz13rule4:=(\x0 x1 x2 x3 x4 x5 x6.woz13rule3 x0 (binintersectT x0 x1 x2) x3 x4 (woz13rule1 x0 x1 x2 x3 x5) (woz13rule2 x0 x1 x2 x4 x6)).
+

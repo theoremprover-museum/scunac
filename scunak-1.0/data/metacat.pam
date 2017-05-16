@@ -1,0 +1,42 @@
+author "Chad Edward Brown"!
+
+% Meta Category Theory.
+% A (locally small) Category C is specified by giving the following information:
+[C:obj -> prop]
+[homC:C -> C -> set]
+[idC:{X:C}(homC X X)]
+[compC:{X:C}{Y:C}{Z:C}(homC Y Z) -> (homC X Y) -> (homC X Z)]
+[idCl:{X:C}{Y:C}{f:(homC X Y)}|- ((compC X Y Y (idC Y) f)==f)]
+[idCr:{X:C}{Y:C}{f:(homC X Y)}|- ((compC X X Y f (idC X))==f)]
+[assocD:{X:C}{Y:C}{Z:C}{W:C}{f:(homC X Y)}{g:(homC Y Z)}{h:(homC Z W)}|- ((compC X Z W h (compC X Y Z g f))==(compC X Y W (compC Y Z W h g) f))]
+
+% A Second Category D
+[D:obj -> prop]
+[homD:D -> D -> set]
+[idD:{X:D}(homD X X)]
+[compD:{X:D}{Y:D}{Z:D}(homD Y Z) -> (homD X Y) -> (homD X Z)]
+[idDl:{X:D}{Y:D}{f:(homD X Y)}|- ((compD X Y Y (idD Y) f)==f)]
+[idDr:{X:D}{Y:D}{f:(homD X Y)}|- ((compD X X Y f (idD X))==f)]
+[assocD:{X:D}{Y:D}{Z:D}{W:D}{f:(homD X Y)}{g:(homD Y Z)}{h:(homD Z W)}|- ((compD X Z W h (compD X Y Z g f))==(compD X Y W (compD Y Z W h g) f))]
+
+% A Functor F from C to D is given by
+[F:C -> D]
+[Fa:{X:C}{Y:C}(homC X Y) -> (homD (F X) (F Y))]
+[Fid:{X:C}|- ((Fa X X (idC X))==(idD (F X)))]
+[Fcomp:{X:C}{Y:C}{Z:C}{f:(homC X Y)}{g:(homC Y Z)}|- ((Fa X Z (compC X Y Z g f))==(compD (F X) (F Y) (F Z) (Fa Y Z g) (Fa X Y f)))]
+
+% A Second Functor G from C to D is given by
+[G:C -> D]
+[Ga:{X:C}{Y:C}(homC X Y) -> (homD (G X) (G Y))]
+[Gid:{X:C}|- ((Ga X X (idC X))==(idD (G X)))]
+[Gcomp:{X:C}{Y:C}{Z:C}{f:(homC X Y)}{g:(homC Y Z)}|- ((Ga X Z (compC X Y Z g f))==(compD (G X) (G Y) (G Z) (Ga Y Z g) (Ga X Y f)))]
+
+% A natural transformation from F to G
+[eta:{X:C}(homD (F X) (G X))]
+[etaNat:{X:C}{Y:C}{f:(homC X Y)}|- ((compD (F X) (G X) (G Y) (Ga X Y f) (eta X))==(compD (F X) (F Y) (G Y) (eta Y) (Fa X Y f)))]
+
+% Basics in one category C
+[X:C]
+[Y:C]
+[f:(homC X Y)]
+% (monic X Y f):prop=(forall X:C??? need quantification over the universe here...

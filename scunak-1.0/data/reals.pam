@@ -1,0 +1,115 @@
+authors "Chad Edward Brown", "Feryal Fulya Horozal"!
+
+Reals:set?
+notation R Reals.
+
+Naturals:set?
+notation N Naturals.
+NatSubsetReals:|- (N <= R)?
+coercion NatSubsetReals.
+
+Integers:set?
+notation Z Integers.
+IntSubsetReals:|- (Z <= R)?
+coercion IntSubsetReals.
+
+integer0:Z?
+natural1:N?
+realplus:R -> R -> R?
+realmult:R -> R -> R?
+realneg:R -> R?
+
+[a:R]
+[b:R]
+[c:R]
+
+notation 0 integer0.
+notation 1 natural1.
+notation + realplus.
+notation * realmult.
+notation 0- realneg.
+
+notation R-0 (setminus R {0}).
+
+[d:R-0]
+(realrecip d):R-0?
+
+notation 1/ realrecip.
+
+R-0ToRCoercion:|- (R-0 <= R)?
+coercion R-0ToRCoercion.
+
+R-0ToRCoercion:=(subsetI1 (setminus Reals {integer0}) Reals (\x0.setminusEL Reals {integer0} x0 x0)).
+
+(realminus a b)=(a + (0- b)).
+notation - realminus.
+(realdiv a d)=(realmult a (1/ d)).
+notation / realdiv.
+
+coercion NatSubsetReals.
+coercion IntSubsetReals.
+
+% Algebraic properties of the reals (Bartle Sherbert 2.1)
+(realA1 a b):|- ((a + b)==(b + a))?
+(realA2 a b c):|- (((a + b) + c)==(a + (b + c)))?
+(realA3a a):|- ((0 + a)==a)?
+(realA3b a):|- ((a + 0)==a)?
+(realA4a a):|- ((a + (0- a))==0)?
+(realA4b a):|- (((0- a) + a)==0)?
+(realM1 a b):|- ((a * b)==(b * a))?
+(realM2 a b c):|- (((a * b) * c)==(a * (b * c)))?
+realM3a:|- (1 != 0)?
+(realM3b a):|- ((1 * a) == a)?
+(realM3c a):|- ((a * 1) == a)?
+
+(realM4a d):|- (((1/ d) * d)==1)?
+(realM4b d):|- ((d * (1/ d))==1)?
+(realDa a b c):|- ((a * (b + c))==((a * b) + (a * c)))?
+(realDb a b c):|- (((b + c) * a)==((b * a) + (c * a)))?
+
+% Order properties of the reals (Bartle Sherbert 2.2)
+PosReals:set?
+notation P PosReals.
+
+PosRealsSubsetReals:|- (P<=R)?
+coercion PosRealsSubsetReals.
+
+[a:P][b:P]
+
+(posRealPlus a b):|- ((a + b)::P)?
+(posRealMult a b):|- ((a * b)::P)?
+
+[a:R]
+(realTrichot a):|- (((a::P)|(a==0))|((0- a)::P))?
+
+[b:R]
+(realLessThan a b):prop=((b - a)::P). 
+notation < realLessThan.
+
+(realLeq a b):prop=((b - a)::(P \cup {0})).
+
+% Completeness of the Reals (Bartle Sherbert 2.4)
+[S:(powerset R)]
+[u:R]
+(realUpperBoundOf S u):prop=(forall s:S . (realLeq <s,(powersetE R S s S s)> u)).
+[w:R]
+(realLowerBoundOf S w):prop=(forall s:S . (realLeq w <s,(powersetE R S s S s)>)).
+
+(realBoundedAbove S):prop=(exists u:R . (realUpperBoundOf S u)).
+(realBoundedBelow S):prop=(exists w:R . (realLowerBoundOf S w)).
+
+[u:{x:R|(realUpperBoundOf S x)}]
+(realSupremum S u):prop=(forall v:R . ((realUpperBoundOf S v) => (realLeq u v))).
+%(realSupremum S u):prop=(forall v:{x:R|(realUpperBoundOf S x)} . (realLeq u v))).
+
+(realSupremumProperty S):|- (nonempty S) -> |- (realBoundedAbove S) -> |- (exists u:{x:R|(realUpperBoundOf S x)} . (realSupremum S u))?
+
+% Fulya's suggestion: (realSupremum S u):prop=(and (realBoundedAbove S) (not (exists v:R . (and (realLessThan v u) (realUpperBoundOf S v))))).
+
+[S:{S:(powerset R)|(realBoundedAbove S)}]
+[u:{x:R|(realUpperBoundOf S x)}]
+(realSupremum2 S u):prop=(not (exists v:R . (and (realLessThan v u) (realUpperBoundOf S v)))).
+
+(realSupremumEquiv2 S u):|- ((realSupremum S u) <=> (realSupremum2 S u))?
+
+(realSupremumProperty2 S):|- (nonempty S) -> |- (realBoundedAbove S) -> |- (exists u:{x:R|(realUpperBoundOf S x)} . (realSupremum2 S u))?

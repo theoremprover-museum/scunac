@@ -1,0 +1,362 @@
+% scunak-acl -k macu -p bool-props-sets-sm -f setrules.pam bool-props-sets.pam
+% scunak-clisp -k macu -p bool-props-sets-sm -f setrules.pam bool-props-sets.pam
+
+tutor-auto-back setextsub.
+
+% untyped examples
+
+tutor-student-usable notE contradiction subsetI1 subsetI2 binintersectEL binintersectER binintersectI binunionIL binunionIR binunionE binunionCases emptysetsubset subsetemptysetimpeq.
+
+[A:set]
+[B:set]
+[C:set]
+
+tutor (unionComm A B)
+let x:obj.
+assume (x::(binunion A B)).
+assume (x::A).
+qed.
+assume (x::B).
+qed.
+let x:obj.
+assume (x::(binunion B A)).
+assume (x::A).
+qed.
+assume (x::B).
+qed.
+tutor (unionAssoc A B C)
+let x:obj.
+assume (x::(binunion (binunion A B) C)).
+assume (x::(binunion A B)).
+assume (x::A).
+qed.
+assume (x::B).
+clearly (x::(binunion B C)).
+qed.
+assume (x::C).
+clearly (x::(binunion B C)).
+qed.
+let x:obj.
+assume (x::(binunion A (binunion B C))).
+assume (x::A).
+clearly (x::(binunion A B)).
+qed.
+assume (x::(binunion B C)).
+assume (x::B).
+clearly (x::(binunion A B)).
+qed.
+assume (x::C).
+qed.
+tutor (intersectComm A B)
+let x:obj.
+assume (x::(binintersect A B)).
+clearly (x::A).
+clearly (x::B).
+qed.
+let x:obj.
+assume (x::(binintersect B A)).
+clearly (x::A).
+clearly (x::B).
+qed.
+tutor (intersectAssoc A B C)
+let x:obj.
+assume (x::(binintersect A (binintersect B C))).
+clearly (x::A).
+clearly (x::(binintersect B C)).
+clearly (x::B).
+clearly (x::C).
+clearly (x::(binintersect A B)).
+qed.
+let x:obj.
+assume (x::(binintersect (binintersect A B) C)).
+clearly (x::C).
+clearly (x::(binintersect A B)).
+clearly (x::A).
+clearly (x::B).
+clearly (x::(binintersect B C)).
+qed.
+tutor (unionintersectDist1 A B C)
+let x:obj.
+assume (x::(binunion (binintersect A B) C)).
+assume (x::(binintersect A B)).
+clearly (x::A).
+clearly (x::B).
+clearly (x::(binunion A C)).
+clearly (x::(binunion B C)).
+qed.
+assume (x::C).
+clearly (x::(binunion A C)).
+clearly (x::(binunion B C)).
+qed.
+let x:obj.
+assume (x::(binintersect (binunion A C) (binunion B C))).
+clearly (x::(binunion A C)).
+clearly (x::(binunion B C)).
+assume (x::A).
+assume (x::B).
+clearly (x::(binintersect A B)).
+qed.
+assume (x::C).
+clearly (x::(binunion A C)).
+clearly (x::(binunion B C)).
+qed.
+assume (x::C).
+clearly (x::(binunion A C)).
+clearly (x::(binunion B C)).
+qed.
+tutor (unionintersectDist2 A B C)
+let x:obj.
+assume (x::(binunion A (binintersect B C))).
+assume (x::A).
+clearly (x::(binunion A B)).
+clearly (x::(binunion A C)).
+qed.
+assume (x::(binintersect B C)).
+clearly (x::B).
+clearly (x::C).
+clearly (x::(binunion A B)).
+clearly (x::(binunion A C)).
+qed.
+let x:obj.
+assume (x::(binintersect (binunion A B) (binunion A C))).
+clearly (x::(binunion A B)).
+clearly (x::(binunion A C)).
+assume (x::A).
+qed.
+assume (x::B).
+assume (x::A).
+qed.
+assume (x::C).
+clearly (x::(binintersect B C)).
+qed.
+tutor (intersectunionDist1 A B C)
+let x:obj.
+assume (x::(binintersect (binunion A B) C)).
+clearly (x::(binunion A B)).
+clearly (x::C).
+assume (x::A).
+clearly (x::(binintersect A C)).
+qed.
+assume (x::B).
+clearly (x::(binintersect B C)).
+qed.
+let x:obj.
+assume (x::(binunion (binintersect A C) (binintersect B C))).
+assume (x::(binintersect A C)).
+clearly (x::A).
+clearly (x::C).
+clearly (x::(binunion A B)).
+qed.
+assume (x::(binintersect B C)).
+clearly (x::B).
+clearly (x::C).
+clearly (x::(binunion A B)).
+qed.
+tutor (intersectunionDist2 A B C)
+let x:obj.
+assume (x::(binintersect A (binunion B C))).
+clearly (x::A).
+clearly (x::(binunion B C)).
+assume (x::B).
+clearly (x::(binintersect A B)).
+qed.
+assume (x::C).
+clearly (x::(binintersect A C)).
+qed.
+let x:obj.
+assume (x::(binunion (binintersect A B) (binintersect A C))).
+assume (x::(binintersect A B)).
+clearly (x::A).
+clearly (x::B).
+clearly (x::(binunion B C)).
+qed.
+assume (x::(binintersect A C)).
+clearly (x::A).
+clearly (x::C).
+clearly (x::(binunion B C)).
+qed.
+
+% typed examples
+
+tutor-student-usable notE contradiction subsetTI complementTI complementTE complementTI1 complementTE1 binintersectTEL binintersectTER binintersectTI binunionTIL binunionTIR emptysetsubset emptyInPowerset powersetI1 powersetE1 powersetI powersetTI binunionTE.
+
+[U:set]
+[A:(powerset U)]
+[B:(powerset U)]
+[C:(powerset U)]
+
+tutor (unionTComm U A B)
+let x:U.
+assume (x::(binunionT U A B)).
+assume (x::A).
+qed.
+assume (x::B).
+qed.
+let x:U.
+assume (x::(binunionT U B A)).
+assume (x::A).
+qed.
+assume (x::B).
+qed.
+tutor (unionTAssoc U A B C)
+let x:U.
+assume (x::(binunionT U (binunionT U A B) C)).
+assume (x::(binunionT U A B)).
+assume (x::A).
+qed.
+assume (x::B).
+clearly (x::(binunionT U B C)).
+qed.
+assume (x::C).
+clearly (x::(binunionT U B C)).
+qed.
+let x:U.
+assume (x::(binunionT U A (binunionT U B C))).
+assume (x::A).
+clearly (x::(binunionT U A B)).
+qed.
+assume (x::(binunionT U B C)).
+assume (x::B).
+clearly (x::(binunionT U A B)).
+qed.
+assume (x::C).
+qed.
+tutor (intersectTComm U A B)
+let x:U.
+assume (x::(binintersectT U A B)).
+clearly (x::A).
+clearly (x::B).
+qed.
+let x:U.
+assume (x::(binintersectT U B A)).
+clearly (x::A).
+clearly (x::B).
+qed.
+tutor (intersectTAssoc U A B C)
+let x:U.
+assume (x::(binintersectT U A (binintersectT U B C))).
+clearly (x::A).
+clearly (x::(binintersectT U B C)).
+clearly (x::B).
+clearly (x::C).
+clearly (x::(binintersectT U A B)).
+qed.
+let x:U.
+assume (x::(binintersectT U (binintersectT U A B) C)).
+clearly (x::C).
+clearly (x::(binintersectT U A B)).
+clearly (x::A).
+clearly (x::B).
+clearly (x::(binintersectT U B C)).
+qed.
+tutor (unionintersectTDist1 U A B C)
+let x:U.
+assume (x::(binunionT U (binintersectT U A B) C)).
+assume (x::(binintersectT U A B)).
+clearly (x::A).
+clearly (x::B).
+clearly (x::(binunionT U A C)).
+clearly (x::(binunionT U B C)).
+qed.
+assume (x::C).
+clearly (x::(binunionT U A C)).
+clearly (x::(binunionT U B C)).
+qed.
+let x:U.
+assume (x::(binintersectT U (binunionT U A C) (binunionT U B C))).
+clearly (x::(binunionT U A C)).
+clearly (x::(binunionT U B C)).
+assume (x::A).
+assume (x::B).
+clearly (x::(binintersectT U A B)).
+qed.
+assume (x::C).
+clearly (x::(binunionT U A C)).
+clearly (x::(binunionT U B C)).
+qed.
+assume (x::C).
+clearly (x::(binunionT U A C)).
+clearly (x::(binunionT U B C)).
+qed.
+tutor (unionintersectTDist2 U A B C)
+let x:U.
+assume (x::(binunionT U A (binintersectT U B C))).
+assume (x::A).
+clearly (x::(binunionT U A B)).
+clearly (x::(binunionT U A C)).
+qed.
+assume (x::(binintersectT U B C)).
+clearly (x::B).
+clearly (x::C).
+clearly (x::(binunionT U A B)).
+clearly (x::(binunionT U A C)).
+qed.
+let x:U.
+assume (x::(binintersectT U (binunionT U A B) (binunionT U A C))).
+clearly (x::(binunionT U A B)).
+clearly (x::(binunionT U A C)).
+assume (x::A).
+qed.
+assume (x::B).
+assume (x::A).
+qed.
+assume (x::C).
+clearly (x::(binintersectT U B C)).
+qed.
+tutor (intersectunionTDist1 U A B C)
+let x:U.
+assume (x::(binintersectT U (binunionT U A B) C)).
+clearly (x::(binunionT U A B)).
+clearly (x::C).
+assume (x::A).
+clearly (x::(binintersectT U A C)).
+qed.
+assume (x::B).
+clearly (x::(binintersectT U B C)).
+qed.
+let x:U.
+assume (x::(binunionT U (binintersectT U A C) (binintersectT U B C))).
+assume (x::(binintersectT U A C)).
+clearly (x::A).
+clearly (x::C).
+clearly (x::(binunionT U A B)).
+qed.
+assume (x::(binintersectT U B C)).
+clearly (x::B).
+clearly (x::C).
+clearly (x::(binunionT U A B)).
+qed.
+tutor (intersectunionTDist2 U A B C)
+let x:U.
+assume (x::(binintersectT U A (binunionT U B C))).
+clearly (x::A).
+clearly (x::(binunionT U B C)).
+assume (x::B).
+clearly (x::(binintersectT U A B)).
+qed.
+assume (x::C).
+clearly (x::(binintersectT U A C)).
+qed.
+let x:U.
+assume (x::(binunionT U (binintersectT U A B) (binintersectT U A C))).
+assume (x::(binintersectT U A B)).
+clearly (x::A).
+clearly (x::B).
+clearly (x::(binunionT U B C)).
+qed.
+assume (x::(binintersectT U A C)).
+clearly (x::A).
+clearly (x::C).
+clearly (x::(binunionT U B C)).
+qed.
+tutor (complementProp1 U A)
+clearly ({}::(powerset U)).
+qed.
+let x:U.
+assume (x::(binintersectT U A (complementT U A))).
+clearly (x::A).
+clearly (x::(complementT U A)).
+clearly (not (x::A)).
+clearly false.
+clearly ((binintersectT U A (complementT U A))<={}).
+qed.

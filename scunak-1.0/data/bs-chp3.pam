@@ -1,0 +1,260 @@
+authors "Chad Edward Brown", "Feryal Fulya Horozal"!
+
+% Chapter 3 Sequences
+
+% Section 3.1 Sequences and their Limits
+
+[X:obj][A:set]    
+(sequenceIn A):set=(funcSet N A). % set of all sequences of A.       
+
+notation RSeq (sequenceIn R).
+notation NSeq (sequenceIn N).
+
+NSeqToRSeqCoercion:|- (NSeq <= RSeq)?
+coercion NSeqToRSeqCoercion.
+
+notation ap2NR (ap2 N R).
+
+% Elements/values of a seq (terms in a seq)
+[X:RSeq][n:N]
+(valueOfRSeqAt X n):R=(ap2NR <X,(sequenceIn#U R (\x5.(X::x5)) X)> n).
+notation sub valueOfRSeqAt. 
+
+[X:NSeq][n:N]
+(subN X n):N=(ap2 N N <X,(sequenceIn#U N (\x5.(X::x5)) X)> n).
+
+% Examples of some sequences in R
+
+% Sequence of even natural numbers X:=(2,4,6,8,...). X:=(2n: n in N).
+seq-2n:(funcSet N R)=(lam2 N R (\n.(2 * n))).
+% fails to process: seq-2n:RSeq=(lam2 N R (\n.(2 * n))).
+
+% Sequence of reciprocals of the natural numbers X:=(1/1, 1/2, 1/3, 1/4,...). X:=(1/m : m in N).
+
+% inductive definition of sequences x_1=2; x_(n+1) = x_n + 2?
+
+% Sum, difference, product and a constant multiple of two seqs X and Y
+[X:RSeq][Y:RSeq]
+
+(sum X Y):RSeq?
+(difference X Y):RSeq?
+
+[c:R]
+(cMultipleOf X c):RSeq?
+
+% limit of a seq
+[X:RSeq][x:R]
+
+[K:N][n:{n:N|(realLeq K n)}]
+(nKlemma K n):|- (n::N)?
+
+(limitOfRealSequence X x):prop=(forall e:P . (exists K:N . (forall n:{n:N|(realLeq K n)} . ((sub X <n,(nKlemma K n)>)::(eNB x e))))).
+notation lim limitOfRealSequence.
+
+% Example: lim(1/n)=0.
+
+(convergesTo X x):prop=(lim X x).
+
+(convergent X):prop=(exists x:R . (lim X x)).
+setOfConvergentSequences:set={X:RSeq|(convergent X)}.
+notation ConvSeq setOfConvergentSequences.
+
+ConvSeqToRSeqCoercion:|- (ConvSeq <= RSeq)?
+coercion ConvSeqToRSeqCoercion.
+
+(divergent X):prop=(not (convergent X)).
+setOfDivergentSequences:set={X:RSeq|(divergent X)}.
+notation DivSeq setOfDivergentSequences.
+
+DivSeqToRSeqCoercion:|- (DivSeq <= RSeq)?
+coercion DivSeqToRSeqCoercion.
+
+% A sequence of real numbers can have at most one limit
+[X:RSeq]
+%parsing problem
+%(uniquenessOfLimit X):|- (forall x y:R . (((and (lim X x) (lim X y)) => (x == y))))?
+
+[X:RSeq][x:R]
+%(bs-thm-3-1-6c X x):|- (forall e:P . (exists K:N . (forall n:N . ((realLeq K n) => ((abs ((sub X n) - x)) < e)))))?
+(bs-thm-3-1-6c X x):|- (forall e:P . (exists K:N . (forall n:{n:N|(realLeq K n)} . ((abs ((sub X <n,(nKlemma K n)>) - x)) < e))))?
+% text: for all n >= K 
+
+% Section 3.2 Limit theorems
+
+[X:RSeq]
+(boundedSequenceOfR X):prop=(exists M:P . (forall n:N . (realLeq (abs (sub X n)) M))).
+notation boundedSeq boundedSequenceOfR.
+
+% thus a seq X is bounded iff the set {x_n| n::N} if its values is bounded in R
+
+setOfBoundedSequences:set={X:RSeq|(boundedSeq X)}.
+notation BndSeq setOfBoundedSequences.
+
+BndSeqToRSeqCoercion:|- (BndSeq <= RSeq)?
+coercion BndSeqToRSeqCoercion.
+
+[X:ConvSeq]
+(bs-thm-3-2-2 X):|- (boundedSeq X)?
+% thm3.2.2 uses thm3.1.6c and corollary2.3.4a of the Triq Ineq.
+% the set M:=sup{|x1|,|x2|,...,|x(K-1)|,|x|+1} is needed.
+
+%(bs-thm-3-2-2 X):|- (convergent X) -> |- (boundedSeq X)?
+%% or (bs-thm-3-2-2 X):|- ((convergent X) => (boundedSeq X))?
+
+[X:RSeq][Y:RSeq]
+[x:R][y:R]
+[u1:|- (lim X x)]
+[u2:|- (lim Y y)]
+[c:R]
+% Uses K:=sup{K1, K2} and constant seq
+(bs-thm-3-2-3a X Y x y u1 u2 c):|- (and (lim (sum X Y) (x + y)) (lim (cMultipleOf X c) (c * x)))?
+
+% Example: show that the seq (n) is divergent
+
+% Section 3.3 Monotone Sequences
+
+[X:RSeq]                                                                                  
+(increasingRSeq X):prop=(forall n:N . (realLeq (sub X n) (sub X (succ n)))).
+notation increasing increasingRSeq.
+
+% Set of increasing sequences in R
+IncSeq:set={X:RSeq|(increasing X)}.
+
+(decreasingRSeq X):prop=(forall n:N . (realLeq (sub X (succ n)) (sub X n))).          
+notation decreasing decreasingRSeq.
+
+% Set of decreasing sequences in R
+DecSeq:set={X:RSeq|(decreasing X)}. 
+
+(strictlyIncRSeq X):prop=(forall n:N . ((sub X n) < (sub X (succ n)))). 
+notation strictlyInc strictlyIncRSeq.
+
+% Set of strictly increasing sequences in R
+strIncSeq:set={X:RSeq|(strictlyInc X)}.
+
+strIncSeqToRSeqCoercion:|- (strIncSeq <= RSeq)?
+coercion strIncSeqToRSeqCoercion.
+
+(strictlyDecRSeq X):prop=(forall n:N . ((sub X (succ n)) < (sub X n))).
+notation strictlyDec strictlyDecRSeq.  
+
+% Set of strictly decreasing sequences in R
+strDecSeq:set={X:RSeq|(strictlyDec X)}.
+
+(monotone X):prop=((increasing X)|(decreasing X)).
+
+% Set of monotone sequences in R 
+MonotoneSeq:set={X:RSeq|(monotone X)}. 
+
+MonotoneSeqToRSeqCoercion:|- (MonotoneSeq <= RSeq)?
+coercion MonotoneSeqToRSeqCoercion.
+
+% Monotone Convergence Theo: A monotone seq of reals is convergent iff it is bounded.
+[X:MonotoneSeq]
+(monotoneConvTheo X):|- ((convergent X) <=> (boundedSeq X))?
+
+[X:RSeq][x:R]
+(supremumOfSeq X x):prop? 
+(infimumOfSeq X x):prop?
+
+BndIncSeqToRSeqCoercion:|- ({X:RSeq|(and (boundedSeq X) (increasing X))} <= RSeq)?
+coercion BndIncSeqToRSeqCoercion.
+
+[X:{X:RSeq|(and (boundedSeq X) (increasing X))}]
+(monotoneConvTheo-a X x):|- ((lim X x) => (supremumOfSeq X x))?
+%(monotoneConvTheo-a X x):|- ((and (boundedSeq X) (increasing X)) => ((lim X x) => (supremumOfSeq X x)))?
+%%(monotoneConvTheo-a X x):|- (and (boundedSeq X) (increasing X)) -> |- ((lim X x) => (supremumOfSeq X x))?
+
+% monotoneConvTheo-a uses: Supremum Principle 2.4.6
+
+BndDecSeqToRSeqCoercion:|- ({X:RSeq|(and (boundedSeq X) (decreasing X))} <= RSeq)?
+coercion BndDecSeqToRSeqCoercion.
+
+[X:{X:RSeq|(and (boundedSeq X) (decreasing X))}]
+(monotoneConvTheo-b X x):|- ((lim X x) => (infimumOfSeq X x))?
+%(monotoneConvTheo-b X x):|- ((and (boundedSeq X) (decreasing X)) => ((lim X x) => (infimumOfSeq X x)))?
+
+%monotoneConvTheo-b uses: thm3.2.3a, exercise 2.5.4b
+
+% Section 3.4 Subsequences and the Bolzano-Weierstrass Theorem
+
+strIncNSeqToRSeqCoercion:|- ({X:NSeq|(strictlyInc X)} <= RSeq)?
+coercion strIncNSeqToRSeqCoercion.
+
+strIncNSeqToNSeqCoercion:|- ({X:NSeq|(strictlyInc X)} <= NSeq)?
+coercion strIncNSeqToNSeqCoercion.
+
+[X:RSeq][Y:RSeq]
+(realSubsequenceOf X Y):prop=(exists W:{X:NSeq|(strictlyInc X)} . (forall n:N . ((sub X (subN W n)) == (sub Y n)))).
+notation subseq realSubsequenceOf.
+
+(setOfRealSubsequencesOf X):set={Y:RSeq|(subseq X Y)}.
+notation subseqOf setOfRealSubsequencesOf.
+
+(subseqOfXToRSeqCoercion X):|- ((subseqOf X) <= RSeq)?
+coercion (subseqOfXToRSeqCoercion X). 
+
+% see "sequences-7th-attemt" for bs-thm-3-4-2
+[X:RSeq][x:R]
+coercion (subseqOfXToRSeqCoercion X).
+(bs-thm-3-4-2 X x):|- (convergesTo X x) -> |- (forall Y:(subseqOf X) . (convergesTo Y x))?
+% uses: "let e>0 be given". Is that going to be a/an (assumption) term given as an arg. to bs-thm-3-4-2? 
+% uses: "it is proved by INDUCTION that r_n >= n".
+
+% Divergence Criterion
+[X:RSeq][x:R]
+(divergenceCrit X x):|- ((not (convergesTo X x)) <=> (exists e:P . (forall k:N . (exists rk:N . (and (realLeq k rk) (realLeq (abs ((sub X rk) - x)) e))))))?
+
+% this would only be => 
+% [u:|- (not (convergesTo X x))]
+% (divergenceCrit X x u):|- (exists e:P . (forall k:N . (exists rk: N. (and (realLeq k rk) (realLeq (abs ((sub X rk) - x)) e)))))?
+
+% Existence of Monotone Sequences
+% Observe: Not every seq is monotone, but every seq has a monotone subseq
+
+%Monotone Subseq Thm: If X is a seq of reals, then there is a subseq of X that is monotone.
+
+[X:RSeq]
+coercion (subseqOfXToRSeqCoercion X).
+
+(monotoneSequenceThm X):|- (exists Y:(subseqOf X) . (monotone Y))?
+%(monotoneSequenceThm X):|- (exists Y:RSeq . (and (subseq X Y) (monotone Y)))?
+
+% "peak" of a seq ?
+
+% Bolzano-Weierstrass theorem
+[X:BndSeq]
+coercion (subseqOfXToRSeqCoercion X).
+
+(bolzanoWeierstrassThm X):|- (exists Y:(subseqOf X) . (convergent Y))?
+
+% Y is a convergent subsequent of X, where X is a bounded seq of real numbers
+[X:BndSeq][x:R]
+(ConvSubseqOfXToRSeqCoercion X):|- ({Y:RSeq|(and (convergent Y) (subseq X Y))} <= RSeq)?
+coercion (ConvSubseqOfXToRSeqCoercion X).
+
+[u:|- (forall Y:{Y:RSeq|(and (convergent Y) (subseq X Y))} . (convergesTo Y x))]
+(bs-thm-3-4-8 X x u):|- (convergesTo X x)?
+
+% Section 3.5 Cauchy Criterion
+
+[X:RSeq]
+[H:N][n:{n:N|(realLeq H n)}]
+(nHlemma H n):|- (n::N)?
+(cauchySequence X):prop=(forall e:P . (exists H:N . (forall n m:{n:N|(realLeq H n)} . ((abs ((sub X <n,(nHlemma H n)>) - (sub X <m,(nHlemma H m)>))) < e)))).
+
+setOfCauchySequencesOfReals:set={X:RSeq|(cauchySequence X)}.
+notation Cauchy setOfCauchySequencesOfReals.
+
+CauchyToRSeqCoercion:|- (Cauchy <= RSeq)?
+coercion CauchyToRSeqCoercion.
+
+[X:ConvSeq]
+(bs-lemma-3-5-2 X):|- (cauchySequence X)?
+
+[X:Cauchy]
+(bs-lemma-3-5-3 X):|- (boundedSeq X)?
+
+% The Completeness Of Real Numbers
+[X:RSeq]
+(CauchyConvergenceCriterion X):|- ((convergent X) <=> (cauchySequence X))?

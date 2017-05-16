@@ -1,0 +1,6 @@
+author "Chad Edward Brown"!
+
+[A:set]
+[B:set]
+[C:set]
+(unionComm A B):|- ((A \cup B) == (B \cup A))?

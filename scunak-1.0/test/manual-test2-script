@@ -1,0 +1,75 @@
+% scunak-acl -k macu -f bool-props-sets.pam
+% scunak-clisp -k macu -f bool-props-sets.pam
+prove unionintersectDist2
+X
+Y
+Z
+pplan
+intro
+pplan
+pstatus
+choose-task
+1
+pstatus
+pplan
+intro
+a
+pplan
+clearly
+(a::(X \cup Y))
+clearly
+((a::X) | (a::Y))
+pplan
+cases
+pplan
+pstatus
+d
+pplan
+clearly
+(a::(X \cup Z))
+pplan
+clearly
+((a::X) | (a::Z))
+pplan
+cases
+pplan
+d
+pstatus
+pplan
+clearly
+(a::(Y \cap Z))
+pplan
+d
+pstatus
+pplan
+intro
+a
+clearly
+((a::X) | (a::(Y \cap Z)))
+pplan
+cases
+pplan
+clearly
+(a::(X \cup Y))
+clearly
+(a::(X \cup Z))
+pplan
+d
+pstatus
+pplan
+clearly
+(a::Y)
+clearly
+(a::Z)
+pplan
+clearly
+(a::(X \cup Y))
+clearly
+(a::(X \cup Z))
+pplan
+d
+
+
+
+
+help unionintersectDist2

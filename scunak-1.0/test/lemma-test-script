@@ -1,0 +1,45 @@
+% scunak-acl -f bs-1-1-4d.pam
+% or
+% scunak-clisp -f bs-1-1-4d.pam
+
+prove bs114d
+A
+B
+C
+intro
+intro
+x
+clearly
+(x::A)
+clearly
+((x::B) | (x::C))
+clearly
+(x::(B \cup C))
+clearly
+((x::B) | (x::C))
+cases
+lemma
+mysetl1
+x fact1 ass0
+lemma
+mysetl1
+A B C x fact1 ass0
+|- (x::((A \cap B) \cup (A \cap C)))
+d
+lemma
+mysetl2
+A B C x fact1 ass1
+|- (x::((A \cap B) \cup (A \cap C)))
+d
+chkterm
+lemma
+mysetl3
+A B C
+|- (((A \cap B) \cup (A \cap C))<=(A \cap (B \cup C)))
+d
+
+
+
+
+help bs114d
+all-claims

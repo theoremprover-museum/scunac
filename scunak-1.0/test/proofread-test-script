@@ -1,0 +1,21 @@
+% scunak-acl -k mu -p bs-1-1-4d-mode.lisp -f bs-1-1-4d.pam
+% or
+% scunak-clisp -k mu -p bs-1-1-4d-mode.lisp -f bs-1-1-4d.pam
+
+[A:set]
+[B:set]
+[C:set]
+proofread "bs-justpf.tex" (bs114d A B C).
+proofread "bs-shorterpf.tex" (bs114d A B C).
+proofread "bs-shorterpf2.tex" (bs114d A B C).
+proofread "bs-badpf1.tex" (bs114d A B C).
+proofread "bs-badpf2.tex" (bs114d A B C).
+proofread "bs-badpf3.tex" (bs114d A B C).
+proofread "bs-badpf4.tex" (bs114d A B C).
+proofread "bs-badpf5.tex" (bs114d A B C).
+proofread "bs-badpf6.tex" (bs114d A B C).
+proofread "bs-badpf7.tex" (bs114d A B C).
+proofread "bs-badpf8.tex" (bs114d A B C).
+proofread "bs-badpf9.tex" (bs114d A B C).
+proofread "bs-incompletepf.tex" (bs114d A B C).
+proofread "bs-badincompletepf.tex" (bs114d A B C).

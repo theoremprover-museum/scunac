@@ -1,0 +1,113 @@
+   Scunak Version 1.0
+
+   Copyright (C) 2006 Chad E Brown (cebrown2323@yahoo.com)
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License along
+   with this program; if not, write to the Free Software Foundation, Inc.,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+To install Scunak, first edit the file make.lisp to set
+the three parameters:
+*dxldir*
+*execdir*
+*datadir*
+
+To install Scunak with Allegro Common Lisp and with clisp, run
+the install script.  To install Scunak with only one of these lisps,
+start the appropriate lisp and load make.lisp.
+
+For information about installing and using Scunak, see doc/manual.ps
+
+Contents:
+
+install : script to install scunak-acl (using Allegro) and scunak-clisp (using clisp)
+make.lisp : lisp file for compiling scunak and making images
+
+doc/ - documentation
+
+data/ - mostly lisp files and pam files containing signature elements
+
+test/ - a directory containing data for testing Scunak with examples
+
+src/ - source code
+
+---------------------------------------
+To begin your Scunakation experience, try this:
+
+scunak-clisp -k f
+[or, scunak-acl -k f]
+
+Then reconstruct the following session.
+More explanation is given in the Manual (doc/manual.ps).
+
+>[A:set]
+>[B:set]
+>[C:set]
+>justify (A <= (A \cup B))
+Proof Term:
+(binunionLsub A B)
+>typeof (binunionLsub A B)
+Type: |- (A<=(A \cup B))
+>justify (B <= (A \cup B))
+Proof Term:
+(binunionRsub A B)
+>justify (B <= (A \cup (B \cup C)))
+Could not justify prop
+>(myclaim A B C):|- (B <= (A \cup (B \cup C)))?
+>prove myclaim
+Give name for obj>A
+Give name for obj>B
+Give name for obj>C
+>pplan
+Support (Objects, Assumptions and Derived Facts in Context):
+A:obj
+B:obj
+C:obj
+Goal (What you need to show): |- (B<=(A \cup (B \cup C)))
+>intro
+OK
+Give name for (in B)>x
+>pplan
+Support (Objects, Assumptions and Derived Facts in Context):
+A:obj
+B:obj
+C:obj
+x:(in B)
+fact0:|- (x::B)
+Goal (What you need to show): |- (x::(A \cup (B \cup C)))
+>clearly
+Enter Proposition>(x::(B \cup C))
+Correct.
+>pplan
+Support (Objects, Assumptions and Derived Facts in Context):
+A:obj
+B:obj
+C:obj
+x:(in B)
+fact0:|- (x::B)
+fact1:|- (x::(B \cup C))
+Goal (What you need to show): |- (x::(A \cup (B \cup C)))
+>d
+Done with subgoal!
+Output PAM Proof Term to File [y/n, Default y]>
+Filename [Default File myproofs.pam]>
+Output Lisp Proof Term to File [y/n, Default y]>
+Filename [Default File myproofs.lisp]>
+Scip Out!
+>help myclaim
+myclaim is an abbreviation of type:
+{x0:obj}{x1:obj}{x2:obj}|- (x1<=(x0 \cup (x1 \cup x2)))
+Defn: (\x0 x1 x2.subsetI1 x1 (x0 \cup (x1 \cup x2)) (\x3.binunionIR x0 (x1 \cup x2) x3 (binunionIL x1 x2 x3 x3)))
+myclaim is essentially a derived proof rule.
+Due to proof irrelevance, the abbreviation never needs to be expanded.
+-------------------------------------

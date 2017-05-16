@@ -1,0 +1,30 @@
+author "Chad Edward Brown"!
+
+% Some Untyped Boolean Properties:
+[A:set]
+[B:set]
+[C:set]
+(unionComm A B):|- ((A \cup B) == (B \cup A))?
+(unionAssoc A B C):|- (((A \cup B) \cup C) == (A \cup (B \cup C)))?
+(intersectComm A B):|- ((A \cap B) == (B \cap A))?
+(intersectAssoc A B C):|- (((A \cap B) \cap C) == (A \cap (B \cap C)))?
+(unionintersectDist1 A B C):|- (((A \cap B) \cup C)==((A \cup C) \cap (B \cup C)))?
+(unionintersectDist2 A B C):|- ((A \cup (B \cap C))==((A \cup B) \cap (A \cup C)))?
+(intersectunionDist1 A B C):|- (((A \cup B) \cap C)==((A \cap C) \cup (B \cap C)))?
+(intersectunionDist2 A B C):|- ((A \cap (B \cup C))==((A \cap B) \cup (A \cap C)))?
+
+% The power set U of a set is a Boolean Algebra
+[U:set]
+[A:(powerset U)]
+[B:(powerset U)]
+[C:(powerset U)]
+(unionTComm U A B):|- ((binunionT U A B) == (binunionT U B A))?
+(unionTAssoc U A B C):|- ((binunionT U (binunionT U A B) C) == (binunionT U A (binunionT U B C)))?
+(intersectTComm U A B):|- ((binintersectT U A B) == (binintersectT U B A))?
+(intersectTAssoc U A B C):|- ((binintersectT U (binintersectT U A B) C) == (binintersectT U A (binintersectT U B C)))?
+(unionintersectTDist1 U A B C):|- ((binunionT U (binintersectT U A B) C) == (binintersectT U (binunionT U A C) (binunionT U B C)))?
+(unionintersectTDist2 U A B C):|- ((binunionT U A (binintersectT U B C)) == (binintersectT U (binunionT U A B) (binunionT U A C)))?
+(intersectunionTDist1 U A B C):|- ((binintersectT U (binunionT U A B) C) == (binunionT U (binintersectT U A C) (binintersectT U B C)))?
+(intersectunionTDist2 U A B C):|- ((binintersectT U A (binunionT U B C)) == (binunionT U (binintersectT U A B) (binintersectT U A C)))?
+(complementProp1 U A):|- ((binintersectT U A (complementT U A))=={})?
+(complementProp2 U A):|- ((binunionT U A (complementT U A))==U)?

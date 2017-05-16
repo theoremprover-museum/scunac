@@ -1,0 +1,57 @@
+lisp
+(format t "****** EASY TEST ******~%")
+(load "easy-test.lisp")
+(exit)
+lisp
+(format t "****** MANUAL TEST ******~%")
+(load "manual-test.lisp")
+(exit)
+lisp
+(format t "****** MANUAL TEST 2 ******~%")
+(load "manual-test2.lisp")
+(exit)
+lisp
+(format t "****** MANUAL TEST 3 ******~%")
+(load "manual-test3.lisp")
+(exit)
+lisp
+(format t "****** MANUAL TEST 4 ******~%")
+(load "manual-test4.lisp")
+(exit)
+lisp
+(format t "****** START TEST ******~%")
+(load "start-test.lisp")
+(exit)
+lisp
+(format t "****** PROOFREAD TEST ******~%")
+(load "proofread-test.lisp")
+(exit)
+lisp
+(format t "****** INJCANTOR TEST (requires Vampire) ******~%")
+(load "injcantor-test.lisp")
+(exit)
+lisp
+(format t "****** WOZ1 TEST ******~%")
+(load "woz1-test.lisp")
+(exit)
+lisp
+(format t "****** WOZ2 TEST ******~%")
+(load "woz2-test.lisp")
+(exit)
+lisp
+(format t "****** EXTERNAL TEST ******~%")
+(load "external-test.lisp")
+(exit)
+lisp
+(format t "****** BOOL-PROPS-SETS TEST ******~%")
+(load "bool-props-sets-test.lisp")
+(exit)
+lisp
+(format t "****** SET-COMPUTATIONS TEST ******~%")
+(load "set-computations-test.lisp")
+(exit)
+lisp
+(format t "****** LEMMA TEST ******~%")
+(load "lemma-test.lisp")
+(exit)
+

@@ -1,0 +1,20 @@
+author "Chad Edward Brown"!
+
+[U:set]
+[A:(powerset U)]
+[B:(powerset U)]
+[C:(powerset U)]
+[D:(powerset U)]
+
+(woz1_1 U A B):|- ((complementT U A)::(powersetT U (complementT U (binintersectT U A B))))?
+
+(woz1_2 U A B C D):|- ((complementT U (binintersectT U (binunionT U A B) (binunionT U C D)))==(binunionT U (binintersectT U (complementT U A) (complementT U B)) (binintersectT U (complementT U C) (complementT U D))))?
+
+(woz1_3 U A B C):|- ((binintersectT U A B)::(powersetT U (binintersectT U (binunionT U A C) (binunionT U B C))))?
+
+(woz1_4 U A B):|- (A<=(complementT U B)) -> |- (B<=(complementT U A))?
+
+(woz1_5 U A B):|- ((complementT U (binunionT U A B))::(powersetT U (complementT U A)))?
+
+
+

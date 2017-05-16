@@ -1,0 +1,37 @@
+authors "Chad Edward Brown", "Feryal Fulya Horozal"!
+
+% Assumes reals.pam and bs-chp2.pam
+load "reals.pam"!
+load "bs-chp2.pam"!
+
+% Definition 4.1.1 Begin
+[c:R]
+[delta:P]
+(neighborhood c delta):set={x:R|(stricIncr3 (c - delta) x (c + delta))}.
+
+[A:(powerset R)]
+(clusterPoint A c):prop
+ =(forall delta:P . (exists x:(neighborhood c delta) . ((x::A) & (x != c)))).
+% Definition 4.1.1 End
+
+[f:(funcSet A R)]
+[L:R]
+[c:{x:R|(clusterPoint A x)}]
+
+% BS Definition 4.1.4
+(limitOfFunction A f c L):prop
+ =(forall epsilon:P . (exists delta:P . (forall x:A . (((x::(neighborhood c delta)) & (x != c)) => ((f x)::(neighborhood L epsilon)))))).
+
+notation lim (limitOfFunction A).
+coercion (powersetE1 Reals A A).
+
+(bs-4-1-6lem1 A f c L):|- ((lim f c L) => (forall epsilon:P . (exists delta:P . (forall x:A . (((x::(neighborhood c delta)) & (not (x==c))) => ((f x)::(neighborhood L epsilon)))))))?
+[x:R][y:R][delta:P]
+(bs-4-1-6lem2 x y):|- ((0 < (abs (x - y))) <=> (x != y))?
+(bs-4-1-6lem3 x y delta):|- ((x::(neighborhood y delta)) <=> ((abs (x - y)) < delta))?
+(bs-4-1-6lem4 x y delta):|- (((x::(neighborhood y delta)) & (x != y)) <=> (stricIncr3 0 (abs (x - y)) delta))?
+[epsilon:P]
+(bs-4-1-6lem5 A f c L epsilon delta):|- ((forall x:A . ((stricIncr3 0 (abs (x - c)) delta) => ((abs ((f x) - L)) < epsilon))) => (forall x:A . (((x::(neighborhood c delta)) & (x != c)) => ((f x)::(neighborhood L epsilon)))))?
+
+(bs-4-1-6 A f c L):|- ((lim f c L) <=> (forall epsilon:P . (exists delta:P . (forall x:A . ((stricIncr3 0 (abs (x - c)) delta) => ((abs ((f x) - L)) < epsilon))))))?
+

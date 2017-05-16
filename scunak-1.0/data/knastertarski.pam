@@ -1,0 +1,25 @@
+author "Chad Edward Brown"!
+
+% Variants of Knaster Tarski Fixed Point Theorem
+
+[A:set]
+[K:(funcSet (powerset A) (powerset A))]
+
+(monotoneSetFn A K):prop
+ =(forall X:(powerset A) . forall Y:(powerset A) . ((X <= Y) => ((K X) <= (K Y)))).
+
+[m:|- (monotoneSetFn A K)]
+
+(ktlfp A K m):(powerset A)
+ =<{x:A|forall X:(powerset A) . (((K X) <= X) => (x::X))},sepInPowerset A (\x.forall X:(powerset A) . (((K X) <= X) => (x::X)))>.
+
+(ktlfpPreFP A K m):|- ((K (ktlfp A K m)) <= (ktlfp A K m))?
+
+(ktlfpPostFP A K m):|- ((ktlfp A K m) <= (K (ktlfp A K m)))?
+
+(ktlfpFP A K m):|- ((K (ktlfp A K m)) <= (ktlfp A K m))?
+
+[X:(powerset A)]
+(ktlfpLeast A K m X):|- ((K X) <= X) -> |- ((ktlfp A K m) <= X)?
+
+

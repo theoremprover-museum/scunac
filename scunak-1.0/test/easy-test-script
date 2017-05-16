@@ -1,0 +1,36 @@
+% scunak-acl -k f
+% scunak-clisp -k f
+
+[A:set]
+[B:set]
+[C:set]
+justify (A <= (A \cup B))
+typeof (binunionLsub A B)
+justify (B <= (A \cup B))
+justify (B <= (A \cup (B \cup C)))
+(myclaim A B C):|- (B <= (A \cup (B \cup C)))?
+prove myclaim
+A
+B
+C
+pplan
+intro
+x
+pplan
+clearly
+(x::(B \cup C))
+pplan
+d
+
+
+
+
+help myclaim
+tutor-student-usable subsetI1 binunionIL binunionIR.
+[A:set]
+[B:set]
+[C:set]
+tutor (myclaim A B C)
+let x:B.
+clearly (x::(B \cup C)).
+qed.

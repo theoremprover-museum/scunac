@@ -1,0 +1,63 @@
+[y:obj]
+[z:obj]
+[u:obj]
+[v:(in (y \cap (z \cup u)))]
+[prem0:|- (v::y)]
+[prem1:|- (v::z)]
+(mysetl1 y z u v prem0 prem1):|- (v::((y \cap z) \cup (y \cap u)))?
+[prem2:|- (v::u)]
+(mysetl2 y z u v prem0 prem2):|- (v::((y \cap z) \cup (y \cap u)))?
+(mysetl3 y z u):|- (((y \cap z) \cup (y \cap u))<=(y \cap (z \cup u)))?
+bs114d:=(\x0 x1 x2.setextsub (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (subsetI1 (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (\x3.orE (x3::x1) (x3::x2) (binunionE x1 x2 x3 (binintersectER x0 (x1 \cup x2) x3 x3)) (x3::((x0 \cap x1) \cup (x0 \cap x2))) (mysetl1 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)) (mysetl2 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)))) (mysetl3 x0 x1 x2)).
+[y:obj]
+[z:obj]
+[u:obj]
+[v:(in (y \cap (z \cup u)))]
+[prem0:|- (v::y)]
+[prem1:|- (v::z)]
+(mysetl1 y z u v prem0 prem1):|- (v::((y \cap z) \cup (y \cap u)))?
+[prem2:|- (v::u)]
+(mysetl2 y z u v prem0 prem2):|- (v::((y \cap z) \cup (y \cap u)))?
+(mysetl3 y z u):|- (((y \cap z) \cup (y \cap u))<=(y \cap (z \cup u)))?
+bs114d:=(\x0 x1 x2.setextsub (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (subsetI1 (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (\x3.orE (x3::x1) (x3::x2) (binunionE x1 x2 x3 (binintersectER x0 (x1 \cup x2) x3 x3)) (x3::((x0 \cap x1) \cup (x0 \cap x2))) (mysetl1 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)) (mysetl2 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)))) (mysetl3 x0 x1 x2)).
+[y:obj]
+[z:obj]
+[u:obj]
+[v:(in (y \cap (z \cup u)))]
+[prem0:|- (v::y)]
+[prem1:|- (v::z)]
+(mysetl1 y z u v prem0 prem1):|- (v::((y \cap z) \cup (y \cap u)))?
+[prem2:|- (v::u)]
+(mysetl2 y z u v prem0 prem2):|- (v::((y \cap z) \cup (y \cap u)))?
+(mysetl3 y z u):|- (((y \cap z) \cup (y \cap u))<=(y \cap (z \cup u)))?
+bs114d:=(\x0 x1 x2.setextsub (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (subsetI1 (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (\x3.orE (x3::x1) (x3::x2) (binunionE x1 x2 x3 (binintersectER x0 (x1 \cup x2) x3 x3)) (x3::((x0 \cap x1) \cup (x0 \cap x2))) (mysetl1 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)) (mysetl2 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)))) (mysetl3 x0 x1 x2)).
+[y:obj]
+[z:obj]
+[u:obj]
+[v:(in (y \cap (z \cup u)))]
+[prem0:|- (v::y)]
+[prem1:|- (v::z)]
+(mysetl1 y z u v prem0 prem1):|- (v::((y \cap z) \cup (y \cap u)))?
+[prem2:|- (v::u)]
+(mysetl2 y z u v prem0 prem2):|- (v::((y \cap z) \cup (y \cap u)))?
+(mysetl3 y z u):|- (((y \cap z) \cup (y \cap u))<=(y \cap (z \cup u)))?
+bs114d:=(\x0 x1 x2.setextsub (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (subsetI1 (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (\x3.orE (x3::x1) (x3::x2) (binunionE x1 x2 x3 (binintersectER x0 (x1 \cup x2) x3 x3)) (x3::((x0 \cap x1) \cup (x0 \cap x2))) (mysetl1 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)) (mysetl2 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)))) (mysetl3 x0 x1 x2)).
+[y:obj]
+[z:obj]
+[u:obj]
+[v:(in (y \cap (z \cup u)))]
+[prem0:|- (v::y)]
+[prem1:|- (v::z)]
+(mysetl1 y z u v prem0 prem1):|- (v::((y \cap z) \cup (y \cap u)))?
+[prem2:|- (v::u)]
+(mysetl2 y z u v prem0 prem2):|- (v::((y \cap z) \cup (y \cap u)))?
+(mysetl3 y z u):|- (((y \cap z) \cup (y \cap u))<=(y \cap (z \cup u)))?
+bs114d:=(\x0 x1 x2.setextsub (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (subsetI1 (x0 \cap (x1 \cup x2)) ((x0 \cap x1) \cup (x0 \cap x2)) (\x3.orE (x3::x1) (x3::x2) (binunionE x1 x2 x3 (binintersectER x0 (x1 \cup x2) x3 x3)) (x3::((x0 \cap x1) \cup (x0 \cap x2))) (mysetl1 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)) (mysetl2 x0 x1 x2 x3 (binintersectEL x0 (x1 \cup x2) x3 x3)))) (mysetl3 x0 x1 x2)).
+myclaim:=(\x0 x1 x2.subsetI1 x1 (x0 \cup (x1 \cup x2)) (\x3.binunionIR x0 (x1 \cup x2) x3 (binunionIL x1 x2 x3 x3))).
+myclaim:=(\x0 x1 x2.subsetI1 x1 (x0 \cup (x1 \cup x2)) (\x3.binunionIR x0 (x1 \cup x2) x3 (binunionIL x1 x2 x3 x3))).
+unionintersectDist2:=(\x0 x1 x2.setextsub (x0 \cup (x1 \cap x2)) ((x0 \cup x1) \cap (x0 \cup x2)) (subsetI1 (x0 \cup (x1 \cap x2)) ((x0 \cup x1) \cap (x0 \cup x2)) (\x3.orE (x3::x0) (x3::(x1 \cap x2)) (binunionE x0 (x1 \cap x2) x3 x3) (x3::((x0 \cup x1) \cap (x0 \cup x2))) (\x4.binintersectI (x0 \cup x1) (x0 \cup x2) x3 (binunionIL x0 x1 x3 x4) (binunionIL x0 x2 x3 x4)) (\x4.binintersectI (x0 \cup x1) (x0 \cup x2) x3 (binunionIR x0 x1 x3 (binintersectEL x1 x2 x3 x4)) (binunionIR x0 x2 x3 (binintersectER x1 x2 x3 x4))))) (subsetI1 ((x0 \cup x1) \cap (x0 \cup x2)) (x0 \cup (x1 \cap x2)) (\x3.orE (x3::x0) (x3::x1) (binunionE x0 x1 x3 (binintersectEL (x0 \cup x1) (x0 \cup x2) x3 x3)) (x3::(x0 \cup (x1 \cap x2))) (binunionIL x0 (x1 \cap x2) x3) (\x4.orE (x3::x0) (x3::x2) (binunionE x0 x2 x3 (binintersectER (x0 \cup x1) (x0 \cup x2) x3 x3)) (x3::(x0 \cup (x1 \cap x2))) (binunionIL x0 (x1 \cap x2) x3) (\x5.binunionIR x0 (x1 \cap x2) x3 (binintersectI x1 x2 x3 x4 x5)))))).
+unionintersectDist2:=(\x0 x1 x2.setextsub (x0 \cup (x1 \cap x2)) ((x0 \cup x1) \cap (x0 \cup x2)) (subsetI1 (x0 \cup (x1 \cap x2)) ((x0 \cup x1) \cap (x0 \cup x2)) (\x3.orE (x3::x0) (x3::(x1 \cap x2)) (binunionE x0 (x1 \cap x2) x3 x3) (x3::((x0 \cup x1) \cap (x0 \cup x2))) (\x4.binintersectI (x0 \cup x1) (x0 \cup x2) x3 (binunionIL x0 x1 x3 x4) (binunionIL x0 x2 x3 x4)) (\x4.binintersectI (x0 \cup x1) (x0 \cup x2) x3 (binunionIR x0 x1 x3 (binintersectEL x1 x2 x3 x4)) (binunionIR x0 x2 x3 (binintersectER x1 x2 x3 x4))))) (subsetI1 ((x0 \cup x1) \cap (x0 \cup x2)) (x0 \cup (x1 \cap x2)) (\x3.orE (x3::x0) (x3::x1) (binunionE x0 x1 x3 (binintersectEL (x0 \cup x1) (x0 \cup x2) x3 x3)) (x3::(x0 \cup (x1 \cap x2))) (binunionIL x0 (x1 \cap x2) x3) (\x4.orE (x3::x0) (x3::x2) (binunionE x0 x2 x3 (binintersectER (x0 \cup x1) (x0 \cup x2) x3 x3)) (x3::(x0 \cup (x1 \cap x2))) (binunionIL x0 (x1 \cap x2) x3) (\x5.binunionIR x0 (x1 \cap x2) x3 (binintersectI x1 x2 x3 x4 x5)))))).
+myclaim:=(\x0 x1 x2.subsetI1 x1 (x0 \cup (x1 \cup x2)) (\x3.binunionIR x0 (x1 \cup x2) x3 (binunionIL x1 x2 x3 x3))).
+myclaim:=(\x0 x1 x2.subsetI1 x1 (x0 \cup (x1 \cup x2)) (\x3.binunionIR x0 (x1 \cup x2) x3 (binunionIL x1 x2 x3 x3))).
+unionintersectDist2:=(\x0 x1 x2.setextsub (x0 \cup (x1 \cap x2)) ((x0 \cup x1) \cap (x0 \cup x2)) (subsetI1 (x0 \cup (x1 \cap x2)) ((x0 \cup x1) \cap (x0 \cup x2)) (\x3.orE (x3::x0) (x3::(x1 \cap x2)) (binunionE x0 (x1 \cap x2) x3 x3) (x3::((x0 \cup x1) \cap (x0 \cup x2))) (\x4.binintersectI (x0 \cup x1) (x0 \cup x2) x3 (binunionIL x0 x1 x3 x4) (binunionIL x0 x2 x3 x4)) (\x4.binintersectI (x0 \cup x1) (x0 \cup x2) x3 (binunionIR x0 x1 x3 (binintersectEL x1 x2 x3 x4)) (binunionIR x0 x2 x3 (binintersectER x1 x2 x3 x4))))) (subsetI1 ((x0 \cup x1) \cap (x0 \cup x2)) (x0 \cup (x1 \cap x2)) (\x3.orE (x3::x0) (x3::x1) (binunionE x0 x1 x3 (binintersectEL (x0 \cup x1) (x0 \cup x2) x3 x3)) (x3::(x0 \cup (x1 \cap x2))) (binunionIL x0 (x1 \cap x2) x3) (\x4.orE (x3::x0) (x3::x2) (binunionE x0 x2 x3 (binintersectER (x0 \cup x1) (x0 \cup x2) x3 x3)) (x3::(x0 \cup (x1 \cap x2))) (binunionIL x0 (x1 \cap x2) x3) (\x5.binunionIR x0 (x1 \cap x2) x3 (binintersectI x1 x2 x3 x4 x5)))))).
+unionintersectDist2:=(\x0 x1 x2.setextsub (x0 \cup (x1 \cap x2)) ((x0 \cup x1) \cap (x0 \cup x2)) (subsetI1 (x0 \cup (x1 \cap x2)) ((x0 \cup x1) \cap (x0 \cup x2)) (\x3.orE (x3::x0) (x3::(x1 \cap x2)) (binunionE x0 (x1 \cap x2) x3 x3) (x3::((x0 \cup x1) \cap (x0 \cup x2))) (\x4.binintersectI (x0 \cup x1) (x0 \cup x2) x3 (binunionIL x0 x1 x3 x4) (binunionIL x0 x2 x3 x4)) (\x4.binintersectI (x0 \cup x1) (x0 \cup x2) x3 (binunionIR x0 x1 x3 (binintersectEL x1 x2 x3 x4)) (binunionIR x0 x2 x3 (binintersectER x1 x2 x3 x4))))) (subsetI1 ((x0 \cup x1) \cap (x0 \cup x2)) (x0 \cup (x1 \cap x2)) (\x3.orE (x3::x0) (x3::x1) (binunionE x0 x1 x3 (binintersectEL (x0 \cup x1) (x0 \cup x2) x3 x3)) (x3::(x0 \cup (x1 \cap x2))) (binunionIL x0 (x1 \cap x2) x3) (\x4.orE (x3::x0) (x3::x2) (binunionE x0 x2 x3 (binintersectER (x0 \cup x1) (x0 \cup x2) x3 x3)) (x3::(x0 \cup (x1 \cap x2))) (binunionIL x0 (x1 \cap x2) x3) (\x5.binunionIR x0 (x1 \cap x2) x3 (binintersectI x1 x2 x3 x4 x5)))))).

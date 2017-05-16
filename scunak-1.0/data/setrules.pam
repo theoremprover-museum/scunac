@@ -1,0 +1,11 @@
+author "Chad Edward Brown"!
+
+[A:set]
+[B:set]
+[phi:prop]
+[x:obj]
+[u:|- (x::(A \cup B))]
+[case1:|- (x::A) -> |- phi]
+[case2:|- (x::B) -> |- phi]
+(binunionCases A B x phi u case1 case2):|- phi?
+binunionCases:=(\x0 x1 x2 x3 x4.orE (x2::x0) (x2::x1) (binunionE x0 x1 x2 x4) x3).

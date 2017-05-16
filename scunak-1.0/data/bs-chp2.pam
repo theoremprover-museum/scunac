@@ -1,0 +1,496 @@
+authors "Chad Edward Brown", "Feryal Fulya Horozal"!
+
+notation Z-0 (setminus Z {0}).
+Z-0ToRCoercion:|- (Z-0 <= R)?
+coercion Z-0ToRCoercion.
+
+Z-0SubsetR-0:|- (Z-0 <= R-0)?
+coercion Z-0SubsetR-0.
+
+Z-0SubsetZ:|- (Z-0 <= Z)?
+coercion Z-0SubsetZ.
+
+NToRCoercion:|- (N <= R)?
+coercion NToRCoercion.
+
+notation P0 (P \cup {0}).
+P0ToRCoercion:|- (P0 <= R)?
+coercion P0ToRCoercion.
+
+P0ToR-0Coercion:|- (P0 <= R-0)?
+coercion P0ToR-0Coercion.
+
+PToR-0Coercion:|- (P <= R-0)?
+coercion PToR-0Coercion.
+
+NToPCoercion:|- (N <= P)?
+coercion NToPCoercion.
+
+NToP0Coercion:|- (N <= P0)?
+coercion NToP0Coercion.
+
+NToR-0Coercion:|- (N <= R-0)?
+coercion NToR-0Coercion.
+
+NToZCoercion:|- (N <= Z)?
+coercion NToZCoercion.
+
+[a:P0]
+(P0ToRealsCoercion a):|- (a::R)?
+notation p0tr P0ToRealsCoercion.
+
+(PosRealToRealCoercion a):|- (a::R)?
+notation ptr PosRealToRealCoercion.
+
+triIneq-lem:|- (forall a:R . ((a - 0) == a))?
+
+realLeq-aa:|- (forall a:R . (realLeq a a))?
+%to be used while proving bs-thm-2-3-2e
+
+[x:R][y:R]
+(subtrAddNeg x y):|- ((x - y)==(x + (0- y)))?
+
+[a:Z][b:Z-0]
+
+% a^n
+
+Rationals:set={q:R|(exists a:Z . exists b:Z-0 . (q == (realdiv a b)))}.
+notation Q Rationals.
+RatSubsetReals:|- (Q <= R)?
+coercion RatSubsetReals.
+
+%(rationalnum a b):|- ((realdiv a b)::Q)?      % Z-0 <= R-O <= R
+
+[a:Q][b:Q]
+
+% Sum and product of rationals is again a rational.                  
+(ratPlus a b):|- ((a + b)::Q)?
+(ratMult a b):|- ((a * b)::Q)?
+
+% Algebraic properties of R definitely hold for Q.
+
+[a:R][b:P]
+(arithmetic-2 a b):|- ((a - b) < a)?
+
+notation I (setminus R Q).
+
+[a:N][b:N]
+(natPlus a b):|- ((a + b)::N)?
+(natMult a b):|- ((a * b)::N)?
+
+succ:N->N?
+(succ a):N=<(a + 1),(natPlus a 1)>.
+
+% Chad: Induction Principle for N:
+[phi:N -> prop]
+[basecase:|- (phi 1)]
+[indcase:{n:N}|- (phi n) -> |- (phi (succ n))]
+[n:N]
+(inductionPrincNSubR phi basecase indcase n):|- (phi n)?
+
+notation 2 (succ 1).
+
+[n:N]
+% A natural number is EVEN if it has the form 2n for some n. (can be divisible by 2)
+even:N->prop?
+(even n):prop=(exists m:N . (n == (2 * m))).
+
+% A natural number is ODD if it has the form 2m+1.
+odd:N->prop?
+(odd n):prop=(exists m:N . (n == ((2 * m) + 1))).
+
+% Every natural number is either even or odd.
+(natEvenXOrOdd n):|- (xor (even n) (odd n))?
+
+[x:Z]
+(evenInt x):prop=(exists y:Z . (x == (2 * y))).
+(oddInt x):prop=(exists y:Z . (x == ((2 * y) + 1))).
+
+% Set of Even/Odd numbers
+
+[a:R]
+(realsquare a):R=(a * a).
+notation sqr realsquare.
+
+[a:Z][b:Z]
+(divisibleBy a b):prop=(exists r:Z . (a == (r * b))).
+[r:Z]
+(commonFactorOf a b r):prop=(and (divisibleBy a r) (divisibleBy b r)).
+
+[s:{s:Z|(commonFactorOf a b s)}]
+(abCommonFactLem a b s):|- (s::R)?
+
+%(gcd a b r):prop=(forall s:Z . ((and (commonFactorOf a b s) (commonFactorOf a b r)) => (realLeq s r))).
+% The greatest common factor of two integers is the largest integer that is a factor of both numbers.
+(gcd a b r):prop=(forall s:{s:Z|(commonFactorOf a b s)} . ((commonFactorOf a b r) => (realLeq <s,(abCommonFactLem a b s)> r))).
+
+(coprime a b):prop=(gcd a b 1). 
+
+[a:R]
+positive:R->prop? 
+(positive a):prop=(a::P).
+
+%positiveIntCoercionR:|- ({z:Z|(positive z)} <= R)?
+%coercion positiveIntCoercionR.
+%positiveIntCoercionN:|- ({z:Z|(positive z)} <= N)?
+%coercion positiveIntCoercionN.
+
+%positiveIntegersEqN:|- ({z:Z|(positive z)} == N)?
+
+
+bs-thm-2-1-7-lem1:|- (exists r:Q . ((sqr r) == 2)) -> |- (exists p:Z-0 . (exists q:Z-0 . ((sqr (p / q)) == 2)))?
+bs-thm-2-1-7-lem2:|- (exists p:Z-0 . (exists q:Z-0 . ((sqr (p / q)) == 2))) -> |- (exists p:Z-0 . (exists q:Z-0 . (and (and (and (positive p) (positive q)) (coprime p q)) (sqr (p / q) == 2))))?
+
+[x:R][y:R-0][z:R]
+(bs-thm-2-1-7-lem3 x y z):|- ((sqr (x / y)) == z) -> ((sqr x) == (z * (sqr y)))?
+
+%% Positive integers are natural numbers.
+%[x:{z:Z|(positive z)}]
+%(posInt-isN x):|- (x::N)?
+%posIntToZCoercion:|- ({z:Z|(positive z)} <= Z)?
+%coercion posIntToZCoercion.
+%
+%%% Square of a positive integer is a natural number. 
+%%(sqrPosInt-isN x):|- ((sqr x)::N)?
+
+[x:Z]
+(sqrInt x):|- ((sqr x)::Z)?
+
+%[p:Z-0]
+%(sqrZ-0 p):|- ((sqr p)::N)?
+%(bs-thm-2-1-7-lem4 p):|- (even <(sqr p),(sqrZ-0 p)>) -> |- (even p)?
+%(bs-thm-2-1-7-lem5 p):|- (even <(sqr p),(sqrZ-0 p)>) -> |- (even p)?
+
+[p:Z-0][q:Z]
+%(bs-thm-2-1-7-lem4 p b):|- (p == (2 * b)) -> |- (evenInt p)?
+(bs-thm-2-1-7-lem4 p q):|- ((sqr p) == (2 * (sqr q))) -> |- (evenInt <(sqr p),(sqrInt p)>)?
+(bs-thm-2-1-7-lem5 p):|- (evenInt <(sqr p),(sqrInt p)>) -> |- (evenInt p)?
+
+[x:Z][y:Z]
+(bs-thm-2-1-7-lem6 x y):|- (coprime x y) -> |- (not (commonFactorOf x y 2))?
+
+%[x:{z:Z|(positive z)}][y:{z:Z|(positive z)}]
+%(bs-thm-2-1-7-lem7 x y):|- (and (not (commonFactorOf x y 2)) (even <x,(posInt-isN x)>)) -> (odd <y,(posInt-isN y)>)?
+%(bs-thm-2-1-7-lem7 x y):|- (and (not (commonFactorOf x y 2)) (evenInt x)) -> (oddInt y)?
+(bs-thm-2-1-7-lem7 x y):|- (not (commonFactorOf x y 2)) -> |- (evenInt x) -> (oddInt y)?
+
+4:N?
+
+%[n:N]
+%(bs-thm-2-1-7-lem8 x y n):|- (and (x == (2 * n)) ((sqr x) == (2 * (sqr y)))) -> |- ((4 * (sqr n)) == (2 * (sqr y)))?
+[m:Z]
+(bs-thm-2-1-7-lem8 x y m):|- (and (x == (2 * m)) ((sqr x) == (2 * (sqr y)))) -> |- ((4 * (sqr m)) == (2 * (sqr y)))?
+
+[a:R][b:R]
+(bs-thm-2-1-7-lem9 a b):|- ((4 * a) == (2 * b)) -> ((2 * a) == b)?
+%[a:Z][b:Z][c:Z]
+%(bs-thm-2-1-7-lem9 a b c):|- (a == b) -> |- ((a * c) == (b * c))?
+
+%[a:N]
+%(bs-thm-2-1-7-lem10 a):|- (and (even a) (odd a)) -> false?
+(bs-thm-2-1-7-lem10 x):|- (and (evenInt x) (oddInt x)) -> false?
+
+% Theorem 2.1.7 There does not exist a rational number r st. r^2 = 2 
+bs-thm-2-1-7:|- (not (exists r:Q . ((sqr r) == 2)))?              
+
+% Section 2.2 The order properties of R
+
+NegReals:set={x:R|((0- x)::P)}.
+% set {-a: a::P} of negative numbers
+
+% R is the distinct union of P {0} and NegReals
+
+% NegReals and P are disjoint
+
+[a:R][b:R]
+
+nonnegative:R->prop? 
+(nonnegative a):prop=(a::P0).
+
+negative:R->prop? 
+(negative a):prop=((0- a)::P).
+
+(nonpositive a):prop=((0- a)::P0).
+
+[a:R][b:R]
+(adding2Neg a b):|- (((0- a) + (0- b)) == (0- (a + b)))?
+
+[a:R][b:R]
+(realGreaterThan a b):prop=((a - b)::P).
+notation > realGreaterThan.
+
+(realGeq a b):prop=((a - b)::(P \cup {0})).
+
+%(realLGeq a b):|- ((realLeq a b) <=> (realGeq b a))?
+
+(realLGeq a b):|- (realLeq a b) -> |- (realGeq b a)?
+(realGLeq a b):|- (realGeq a b) -> |- (realLeq b a)?
+(realLGThan a b):|- (a < b) -> |- (b > a)?
+(realGLThan a b):|- (a > b) -> |- (b < a)?
+
+% a<b<c, a <= b <= c, a>b>c, a >= b >= c 
+[a:R][b:R][c:R]
+(incr3 a b c):prop=(and (realLeq a b) (realLeq b c)).
+(stricIncr3 a b c):prop=(and (a < b) (b < c)).
+(decr3 a b c):prop=(and (realGeq a b) (realGeq b c)).
+(stricDecr3 a b c):prop=(and (a > b) (b > c)).
+
+% theorem 2.2.4
+[a:R][b:R][c:R]
+(bs-thm-2-2-4a a b c):|- (and (a > b) (b > c)) -> |- (a > c)?
+(bs-thm-2-2-4b a b):|- ((a > b)|(a == b)|(a < b))?
+(bs-thm-2-2-4c a b):|- (and (realGeq a b) (realGeq b a)) -> |- (a == b)?
+
+(bs-thm-2-2-4a-ii a b c):|- (and (realGeq a b) (realGeq b c)) -> |- (realGeq a c)?
+
+% theorem 2.2.5
+
+% use (posRealPlus a b):|- ((a + b)::P)? to prove P0RealPlus
+[a:P0][b:P0]
+(P0RealPlus a b):|- ((a + b)::P0)?
+% used to prove triIneq
+
+[a:R][b:R]
+(P0RealPlus2 a b):|- (a::P0) -> |- (b::P0) -> |- ((a + b)::P0)?
+
+% theorem 2.2.6a: If a>b, then a+c>b+c
+[a:R][b:R][c:R][d:R]
+(bs-thm-2-2-6a a b c):|- (a > b) -> |- ((a + c) > (b + c))?
+%(bs-thm-2-2-6a-i a b c):|- (realLeq a b) -> |- (realLeq (a + c) (b + c))?
+(bs-thm-2-2-6a-ii-lem a b c):|- (((a + c) - (b + c)) == (a - b))?
+(bs-thm-2-2-6a-ii a b c):|- (realGeq a b) -> |- (realGeq (a + c) (b + c))?
+
+% theorem 2.2.6b: If a>b and c>d then a+c > b+d
+(bs-thm-2-2-6b a b c d):|- (and (a > b) (c > d)) -> |- ((a + c) > (b + d))?
+%(bs-thm-2-2-6b a b c d):|- ((and (a > b) (c > d)) => ((a + c) > (b + d)))?
+
+% lemma thm-2-2-6b-ii
+(bs-thm-2-2-6b-ii-lem a b c d):|- (((a - b) + (c - d))==((a + c) - (b + d)))?
+(bs-thm-2-2-6b-ii a b c d):|- (and (realGeq a b) (realGeq c d)) -> |- (realGeq (a + c) (b + d))?
+
+[a1:R][b1:R][c1:R]
+[a2:R][b2:R][c2:R]
+(bs-thm-2-2-6b-incr3 a1 b1 c1 a2 b2 c2):|- (incr3 a1 b1 c1) -> |- (incr3 a2 b2 c2) -> |- (incr3 (a1 + a2) (b1 + b2) (c1 + c2))?
+
+% theorem 2.2.7
+% corollary 2.2.8
+% theorem 2.2.9
+% theorem 2.2.10
+% theorem 2.2.11
+% corollary 2.2.12
+
+% Inequalities examples
+
+% 2.3 Absolute Value
+
+[a:R][b:R]
+absValueOf:R->R->prop? 
+(absValueOf a b):prop=(((positive a) & (b==a))|((a==0) & (b==0))|((negative a) & (b==(0- a)))).
+
+%(abs a):R=(if R (nonnegative a) a (0- a)).
+(absRR a):R=(if R (nonnegative a) a (0- a)).
+(absValueInP0 a):|- ((absRR a)::P0)?
+(abs a):P0=<(absRR a),(absValueInP0 a)>.
+
+%absFnClaim:|- (func R R {<<a,b>>:R \times R|(absValueOf a b)})?
+%absFn:(func R R)=<{<<a,b>>:R \times R|(absValueOf a b)},absFnClaim>.
+%(abs a):R=(ap R R absFn a).
+
+% thm 2.3.2a |a|=0 iff  a=0
+corollary-to-thm-2-3-2:|- (forall a:R . (realGeq (abs a) 0))? 
+corollary2-to-thm-2-3-2:|- (forall a:R . (realGeq (abs a) (0- a)))?
+% to be used while proving bs-thm-2-3-2-lem1
+
+%bs-thm-2-3-2e:|- (forall a:R . (and (realLeq (0- (abs a)) a) (realLeq a (abs a))))?
+bs-thm-2-3-2e:|- (forall a:R . (incr3 (0- (abs a)) a (abs a)))?
+
+% thm 2.3.2d: If c>=0 then |a|<=c if and only if -c=<a<=c
+[a:R][c:R]
+(bs-thm-2-3-2d-lem1 a c):|- (realLeq (abs a) c) -> |- (and (realLeq a c) (realLeq (0- a) c))?
+
+bs-thm-2-3-2d-lem2-i:|- (forall a c:R . ((realLeq (0- a) c) => (realLeq (0- c) a)))?
+
+bs-thm-2-3-2d-lem2:|- (forall a c:R . ((realLeq (0- a) c) <=> (realLeq (0- c) a)))?
+
+bs-thm-2-3-2d-lem3:|- (forall a c:R . ((and (realLeq a c) (realLeq (0- a) c)) => (realLeq (abs a) c)))?
+%(bs-thm-2-3-2d-lem3 a c):|- (realLeq a c) -> |- (realLeq (0- a) c) -> |- (realLeq (abs a) c)?
+
+[c:R]
+(bs-thm-2-3-2d c):|- (realGeq c 0) -> |- (forall a:R . ((realLeq (abs a) c) <=> (incr3 (0- c) a c)))?
+
+%(bs-thm-2-3-2d c):|- (realGeq c 0) -> |- (forall a:R . ((realLeq (abs a) c) <=> (and (realLeq (0- c) a) (realLeq a c))))?
+%[c:P0]
+%(bs-thm-2-3-2d c):|- (forall a:R . ((realLeq (abs a) c) <=> (and (realLeq (0- c) a) (realLeq a c))))?
+
+[a:R][b:R]
+(triIneq a b):|- (realLeq (abs (a + b)) ((abs a) + (abs b)))?
+
+%corollary 2.3.4
+%corollary 2.3.5
+
+% e neighborhood of "a"
+% eNeighborOf: R -> P -> set
+[a:R][e:P]
+(eNeighborOf a e):set={x:R|((abs (x - a)) < e)}.
+notation eNB eNeighborOf.
+
+% for a::R, the statement that x belongs to the eNB is equivalent to either of the statements
+% -e < x-a < e  <=>  a-e < x < a+e
+
+% thm 2.3.8 
+
+% Section 2.4 The completeness property of R
+
+[S:powerset R]
+(realBounded S):prop=(and (realBoundedAbove S) (realBoundedBelow S)).
+
+% infinitely many upper/lower bounds of a set p.43          
+% every real number is an upper/lower bound of the empty set
+
+% We say a set in R is UNBOUNDED if it lacks either an upper bound or a lower bound
+(realUnbounded S):prop=((not (realBoundedAbove S))|(not (realBoundedBelow S))).
+
+% Examples:
+% 1. (The subset R of) R does not have an upper bound/lower bound.
+% 2. S1={x:R|x>=0} has no upper bound.
+% 3. S2={x:R|x<0} has no lower bound.
+% 4. S3={x:R|x<=2} is unbounded (eventhough it is bounded above).
+% 5. Every real number is an upper bound of the empty set.
+
+RSubsetR:|- (R::(powerset R))?
+example-2-4-1a:|- (not (exists u:R . (realUpperBoundOf <R,RSubsetR> u)))?
+example-2-4-1b:|- (not (exists w:R . (realLowerBoundOf <R,RSubsetR> w)))?
+
+%Show ${\mbox{\tt dsetconstr}}   {\mbox{\cal Reals}}   (  \lambda x0 {\mbox{\bf realGeq}}   x0   \langle \pi_1({\mbox{\cal integer0}}), {\mbox{\bf subsetE}}   {\mbox{\cal Integers}}   {\mbox{\cal Reals}}   \pi_1({\mbox{\cal integer0}})   {\mbox{\cal IntSubsetReals}}   \pi_2({\mbox{\cal integer0}})\rangle)$ has type ${\mbox{\tt in}}   ({\mbox{\tt powerset}}   {\mbox{\cal Reals}})$
+%S1:(powerset R)={x:R|(realGeq x 0)}.
+%example-2-4-2a:|- (not (exists u:R . (realUpperBoundOf S1 u)))?
+%example-2-4-2b:|- (realBoundedBelow S1)?
+
+%S2:(powerset R)={x:R|(x < 0)}.
+%example-2-4-3a:|- (not (exists w:R . (realLowerBoundOf S2 w)))?
+%example-2-4-2b:|- (realBoundedBelow S1)?
+
+
+% lemma 2.4.3 A NUMBER u is a supremum of a nonempty subset S of R iff u satisfies the two conditions
+% i)  s <= u forall s::S
+% ii) if v<u then there exists an s'::S st v<s'
+
+[S:(powerset R)]
+[u:{x:R|(realUpperBoundOf S x)}]
+(xUpperBoundOfSToRCoercion S):|- ({x:R|(realUpperBoundOf S x)} <= R)?
+coercion (xUpperBoundOfSToRCoercion S).
+
+(bs-lemma-2-4-3 S u):|- (nonempty S) -> |- ((realSupremum S u) <=> (and (forall s:S . (realLeq <s,(powersetE R S s S s)> u)) (forall v:R . ((v < u) => (exists s1:S . (realLessThan v <s1,(powersetE R S s1 S s1)>))))))?
+
+% There can be only one supremum of a given subset S of R
+(uniqueRealSupremumOf S):|- (forall u v:{x:R|(realUpperBoundOf S x)} . ((and (realSupremum S u) (realSupremum S v)) => (u == v)))? 
+
+%lemma 2.4.4
+[a:R][b:P]
+(orderRelationProp-4 a b):|- ((a - b) < a)?
+(bs-lemma-2-4-4-i S u):|- (nonempty S) -> |- (realSupremum S u) -> |- (forall e:P . (exists s:S . (realLessThan (u - e) <s,(powersetE R S s S s)>)))?
+(bs-lemma-2-4-4 S u):|- (nonempty S) -> |- ((realSupremum S u) <=> (forall e:P . (exists s:S . (realLessThan (u - e) <s,(powersetE R S s S s)>))))?
+%infimum property of R
+%uniqueRealInfimumOf    
+
+
+% Section 2.5 Applications of the Supremum Property
+
+% Archimedean property: If x::R, then there exists n_x::N st. x < n_x
+
+[x:R]
+NSubsetR:|- (N::(powerset R))?
+(arch-lem1 x):|- (not (exists n:N . (x < n))) -> |- (realUpperBoundOf <N,NSubsetR> x)?
+nonemptyN:|- (nonempty N)?
+(archi-lem2 x):|- ((x - 1) < x)?
+
+
+%(bs-thm-2-2-5c n):|- (n > 0)?
+1inP:|- (1::P)?
+
+[y:R][z:R]
+%(archi-lem3 x y z):|- ((x - y) < z) -> |- (x < (z + y))?
+(archi-lem3 x y):|- (((x - y) + y) == x)?
+
+[n:N]
+(archi-lem4 n):|- ((n + 1)::N)?
+
+[S:(powerset R)]
+[u:{x:R|(realUpperBoundOf S x)}]
+(uInR S):|- ({x:R|(realUpperBoundOf S x)} <= R)?
+coercion (uInR S).
+(uElementR S u):|- (u::R)?
+
+[s:S]
+(archi-lem5 S u s):|- (realSupremum S u) -> |- (realLessThan u <s,powersetE R S s S s>) -> false?  
+
+(archimedeanProperty x):|- (exists n:N . (x < n))?
+
+% Corollary 2.5.3 
+[y:P][z:P]
+%PToR-0Coercion:|- (P <= R-0)?
+(PosRealsRecip y):|- ((1/ y)::P)?
+[a:R][b:R-0][c:R]
+(orderRelationProp-1 a b c):|- ((a / b) < c) -> (a < (c * b))?
+(corollary-2-5-3a y z):|- (exists n:N . (z < (n * y)))?
+
+[a:R][b:R-0][c:R]
+(orderRelationProp-2 a b c):|- (a < (b * c)) -> ((a / b) < c)?
+
+%0LessThan1:|- (0 < 1)?
+%bs-thm-2-2-5b:|- (1 > 0)?
+
+%(orderRelationProp-3 y):|- (0 < (1 / y))?
+(orderRelationProp-3 y):|- (0 < (1/ y))?
+
+[x:R-0]
+(arithmetic-1 x):|- ((1 / x)==(1/ x))?
+
+(corollary-2-5-3b y):|- (exists n:N . (stricIncr3 0 (1/ n) y))?
+
+% existence of square root of 2
+% theorem 2.5.4: There exists a positive real number x st. x^2=2                    
+
+%S:(powerset R)?
+%S:={s:R|(and (realLeq 0 s) ((sqr s) < 2))}.
+% Subgoal: Show ${\mbox{\tt dsetconstr}}   {\mbox{\cal Reals}}   (  \lambda x0 {\mbox{\bf and}}   ({\mbox{\bf realLeq}}   \langle \pi_1({\mbox{\cal integer0}}), {\mbox{\bf subsetE}}   {\mbox{\cal Integers}}   {\mbox{\cal Reals}}   \pi_1({\mbox{\cal integer0}})   {\mbox{\cal IntSubsetReals}}   \pi_2({\mbox{\cal integer0}})\rangle   x0)   ({\mbox{\bf realLessThan}}   ({\mbox{\bf realsquare}}   x0)   \langle \pi_1({\mbox{\bf succ}}   {\mbox{\cal natural1}}), {\mbox{\bf subsetE}}   {\mbox{\cal Naturals}}   {\mbox{\cal Reals}}   \pi_1({\mbox{\bf succ}}   {\mbox{\cal natural1}})   {\mbox{\cal NToRCoercion}}   \pi_2({\mbox{\bf succ}}   {\mbox{\cal natural1}})\rangle))$ has type ${\mbox{\tt in}}   ({\mbox{\tt powerset}}   {\mbox{\cal Reals}})$
+%
+%  (APP (APP dsetconstr . Reals) LAM APP
+%       (APP and APP
+%            (APP realLeq PAIR (FST . integer0) APP
+%                 (APP (APP (APP (APP subsetE . Integers) . Reals) FST
+%                           . integer0)
+%                      . IntSubsetReals)
+%                 SND . integer0)
+%            . 0)
+%       APP (APP realLessThan APP realsquare . 0) PAIR
+%       (FST APP succ . natural1) APP
+%       (APP (APP (APP (APP subsetE . Naturals) . Reals) FST APP succ
+%                 . natural1)
+%            . NToRCoercion)
+%       SND APP succ . natural1)
+%  (DCLASS APP in APP powerset . Reals) OBJ))
+
+%[A:set]
+%(ASubsetR A):|- (A::(powerset R))?
+
+M:set={m:R|(and (realLeq 0 m) ((sqr m) < 2))}.
+MSubsetR:|- (M::(powerset R))?
+MToRCoercion:|- ({m:R|(and (realLeq 0 m) ((sqr m) < 2))} <= R)?
+coercion MToRCoercion.
+
+M-lem1:(1::M)?
+%M-lem2:|- (realUpperBoundOf <M,MSubsetR> 2)?
+M-lem2:|- (realBoundedAbove <M,MSubsetR>)?
+
+[x:{x:R|(realUpperBoundOf <M,MSubsetR> x)}]
+%(M-lem3 x):|- (realSupremum <M,MSubsetR> x) -> |- (x::P)?
+(M-lem3 x):|- (x::P)?
+
+[x:R]
+(xSqrPositive x):|- ((sqr x)::P)?
+
+bs-thm-2-5-4:|- (exists x:P . ((sqr x) == 2))?
+
+
+

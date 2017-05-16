@@ -1,0 +1,19 @@
+author "Chad Edward Brown"!
+
+% Constructing Reals out of Conway Games (games.pam) in a sufficiently big universe
+
+
+[U:set]
+
+[p:(powerset (games U))]
+
+% <<{},{}>>::p
+% x::p -> <<{},{x}>>::p
+% x::p -> <<{x},{}>>::p
+% X,Y::(powerset p), X nonempty, Y nonempty, forall x:X forall y:Y (x < y) -> <<X,Y>>::p
+(gamerealclos U p):prop?
+
+(gamereals U):set={g:(games U)|forall p:(powerset (games U)) . ((gamerealclos U p) => (g::p)}.
+
+
+

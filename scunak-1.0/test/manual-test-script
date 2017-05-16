@@ -1,0 +1,24 @@
+% scunak-acl -k macu -p bool-props-sets-sm -f setrules.pam bool-props-sets.pam
+% scunak-clisp -k macu -p bool-props-sets-sm -f setrules.pam bool-props-sets.pam
+
+tutor-auto-back setextsub.
+tutor-student-usable notE contradiction subsetI1 subsetI2 binintersectEL binintersectER binintersectI binunionIL binunionIR binunionE binunionCases emptysetsubset subsetemptysetimpeq.
+[A:set]
+[B:set]
+tutor (unionComm A B)
+let x:obj.
+assume (x::(A \cup B)).
+assume (x::A).
+clearly (x::B).
+clearly (x::(B \cup A)).
+qed.
+assume (x::A).
+assume (x::B).
+qed.
+let x:obj.
+assume (x::(A \cup B)).
+assume (x::(B \cup A)).
+assume (x::A).
+qed.
+assume (x::B).
+qed.

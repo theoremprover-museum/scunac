@@ -1,0 +1,25 @@
+author "Chad Edward Brown"!
+
+[a:obj]
+[b:obj]
+[c:obj]
+[d:obj]
+[e:obj]
+
+notation A {a,b,c}.
+notation B {c,d,e}.
+
+[aNb:|- (a != b)]
+[aNc:|- (a != c)]
+[aNd:|- (a != d)]
+[aNe:|- (a != e)]
+[bNc:|- (b != c)]
+[bNd:|- (b != d)]
+[bNe:|- (b != e)]
+[cNd:|- (c != d)]
+[cNe:|- (c != e)]
+[dNe:|- (d != e)]
+
+(unionEx1 a b c d e):|- ((A \cup B)=={a,b,c,d,e})?
+(intersectEx1 a b c d e aNb aNc aNd aNe bNc bNd bNe cNd cNe dNe):|- ((A \cap B)=={c})?
+

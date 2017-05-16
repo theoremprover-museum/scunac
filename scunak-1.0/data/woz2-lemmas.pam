@@ -1,0 +1,8 @@
+% Chad E Brown
+% December 2005, June 2006
+[M:obj]
+[R:(breln1 M)]
+[S:(breln1 M)]
+
+(breln1unionCommutes M R S):|- ((breln1union M R S)==(breln1union M S R))?
+breln1unionCommutes:=(\x0 x1 x2.setextsub (breln1union x0 x1 x2) (breln1union x0 x2 x1) (subbreln1 x0 (breln1union x0 x1 x2) (breln1union x0 x2 x1) (\x3 x4 x5.orE (<<x3,x4>>::x1) (<<x3,x4>>::x2) (breln1unionE x0 x1 x2 x3 x4 x5) (<<x3,x4>>::(breln1union x0 x2 x1)) (breln1unionIR x0 x2 x1 x3 x4) (breln1unionIL x0 x2 x1 x3 x4))) (subbreln1 x0 (breln1union x0 x2 x1) (breln1union x0 x1 x2) (\x3 x4 x5.orE (<<x3,x4>>::x2) (<<x3,x4>>::x1) (breln1unionE x0 x2 x1 x3 x4 x5) (<<x3,x4>>::(breln1union x0 x1 x2)) (breln1unionIR x0 x1 x2 x3 x4) (breln1unionIL x0 x1 x2 x3 x4)))).

@@ -1,0 +1,5 @@
+% Testing ijcar 2006, injective Cantor with vampire
+
+% scunak-acl -k ijcar2006
+% scunak-clisp -k ijcar2006
+vampire injCantorThm
